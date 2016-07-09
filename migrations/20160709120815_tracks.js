@@ -1,6 +1,6 @@
 'use strict';
 exports.up = function(knex) {
-  return knex.schema.createTable('tracks', () => {
+  return knex.schema.createTable('tracks', (table) => {
     table.increments();
     table.string('name')
       .notNullable()
