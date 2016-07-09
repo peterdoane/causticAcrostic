@@ -20,5 +20,9 @@
     "knex": "^0.11.7",
     "morgan": "^1.7.0",
     "pg": "^6.0.1"
+  },
+  "devDependencies": {
+    "eslint": "^3.0.1",
+    "eslint-config-ryansobol": "^7.4.0"
   }
 }
