@@ -1,0 +1,24 @@
+{
+  "name": "caustic_acrostic",
+  "version": "0.1.0",
+  "description": "acrostic playlist app",
+  "main": "index.js",
+  "scripts": {
+    "knex": "knex",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "spotify",
+    "acrostic",
+    "playlist"
+  ],
+  "author": "Peter Doane <peterdoane@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "express": "^4.14.0",
+    "knex": "^0.11.7",
+    "morgan": "^1.7.0",
+    "pg": "^6.0.1"
+  }
+}
