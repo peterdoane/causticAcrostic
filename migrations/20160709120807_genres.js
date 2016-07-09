@@ -1,8 +1,14 @@
+'use strict';
+exports.up = function(knex) {
+  return knex.schema.createTable('genres', () => {
+    table.increments();
+    table.string('name')
+      .notNullable()
+      .defaultTo('')
+  });
 
-exports.up = function(knex, Promise) {
-  
 };
 
-exports.down = function(knex, Promise) {
-  
+exports.down = function(knex) {
+  return knex.schema.dropTable('genres');
 };
