@@ -16,7 +16,7 @@ const app = express();
 app.disable('x-powered-by');
 
 app.use(morgan('short'));
-app.use(bodyParser.json())
+app.use(bodyParser.json());
 
 //app.use(express.static(path.join(__dirname, 'public')));
 
