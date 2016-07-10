@@ -2,10 +2,11 @@
   "name": "caustic_acrostic",
   "version": "0.1.0",
   "description": "acrostic playlist app",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "knex": "knex",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "nodemon": "nodemon server.js"
   },
   "keywords": [
     "spotify",
@@ -23,8 +24,12 @@
     "morgan": "^1.7.0",
     "pg": "^6.0.1"
   },
+  "engines": {
+    "node": "6.2.2"
+  },
   "devDependencies": {
     "eslint": "^3.0.1",
-    "eslint-config-ryansobol": "^7.4.0"
+    "eslint-config-ryansobol": "^7.4.0",
+    "nodemon": "^1.9.2"
   }
 }
