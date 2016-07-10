@@ -33,5 +33,10 @@ exports.seed = function(knex) {
         name: 'Riot Grrrl'
       },
       ])
-    });
+    })
+    .then(() => {
+      return knex.raw(
+        "SELECT setval('genres_id_seq', (SELECT MAX(id) FROM genres));"
+    );
+  });
 };

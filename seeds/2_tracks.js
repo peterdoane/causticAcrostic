@@ -31,6 +31,11 @@ exports.seed = function(knex) {
      artist: 'Wormed',
      preview_url: 'https://p.scdn.co/mp3-preview/96f2a54e38121c802b22574e45424f5b019e557b'
     }
-   ]);
- });
+  ]);
+ })
+ .then(() => {
+    return knex.raw(
+      "SELECT setval('tracks_id_seq', (SELECT MAX(id) FROM tracks));"
+    );
+  });
 };
