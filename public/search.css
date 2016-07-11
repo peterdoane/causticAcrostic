@@ -1,3 +1,14 @@
+#dynamic-search{
+  font-size: 60px;
+  max-length:15;
+  margin-bottom: 10px;
+  border-top: 1px solid #111;
+  border-bottom: 1px solid white;
+  color:white;
+  font: 50px/50px 'Megrim', Georgia,
+  serif;
+}
+
 #search{
   font-size: 60px;
   max-length:15;
