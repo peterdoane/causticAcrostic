@@ -4,7 +4,7 @@ const express = require('express');
 const router = express.Router();
 
 const ev = require('express-validation');
-// const validations = require('../validations/tracks');
+const validations = require('../validations/tracks');
 const knex = require('../knex');
 
 router.get('/tracks', (req, res, next) => {
@@ -18,7 +18,7 @@ router.get('/tracks', (req, res, next) => {
     });
 });
 
-router.post('/tracks', (req, res, next) => {
+router.post('/tracks', ev(validations.post), (req, res, next) => {
   knex('tracks')
     .insert(req.body, '*')
     .then((tracks) => {
