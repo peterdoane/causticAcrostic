@@ -22,7 +22,7 @@ app.use(bodyParser.json());
 
 app.use(playlists);
 app.use(tracks);
-//app.use(playlists_tracks);
+app.use(playlists_tracks);
 
 app.use((_req, res) => {
   res.sendStatus(404);
