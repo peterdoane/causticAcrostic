@@ -19,7 +19,7 @@ app.disable('x-powered-by');
 app.use(morgan('short'));
 app.use(bodyParser.json());
 
-//app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(playlists);
 app.use(tracks);
