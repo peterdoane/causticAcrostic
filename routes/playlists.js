@@ -4,7 +4,7 @@ const express = require('express');
 const router = express.Router();
 
 const ev = require('express-validation');
-// const validations = require('../validations/playlists');
+const validations = require('../validations/playlists');
 const knex = require('../knex');
 
 router.get('/playlists', (req, res, next) => {
@@ -18,7 +18,7 @@ router.get('/playlists', (req, res, next) => {
     });
 });
 
-router.post('/playlists', (req, res, next) => {
+router.post('/playlists', ev(validations.post), (req, res, next) => {
   const genre_id = Number.parseInt(req.body.genre_id);
 
   knex('genres')

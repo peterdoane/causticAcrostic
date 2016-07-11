@@ -4,7 +4,7 @@ const express = require('express');
 const router = express.Router();
 
 const ev = require('express-validation');
-// const validations = require('../validations/authors');
+// const validations = require('../validations/tracks');
 const knex = require('../knex');
 
 router.get('/tracks', (req, res, next) => {
