@@ -8,6 +8,9 @@
   font: 50px/50px 'Megrim', Georgia,
   serif;
 }
+input{
+  border-bottom: none;
+}
 
 #search{
   font-size: 60px;
