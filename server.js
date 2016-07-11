@@ -32,7 +32,7 @@ app.use((_req, res) => {
 app.use((err, _req, res, _next) => {
   // eslint-disable-next-line no-console
   if (err.status) {
-    return res.status(err.status).send(err);
+    return res.status(err.status).send(err.message);
   }
 
   console.error(err);
