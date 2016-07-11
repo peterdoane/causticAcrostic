@@ -5,7 +5,7 @@ const router = express.Router();
 
 const ev = require('express-validation');
 const request = require('request-promise');
-// const validations = require('../validations/playlists_tracks');
+const validations = require('../validations/spotify_query');
 const knex = require('../knex');
 
 const refineSearch = function(response, letter) {
@@ -26,7 +26,7 @@ const refineSearch = function(response, letter) {
   return filtered;
 }
 
-router.get('/spotify', (req, res, next) => {
+router.get('/spotify', ev(validations.get), (req, res, next) => {
   const { letter, genre } = req.query;
 
     request({uri: `https://api.spotify.com/v1/search?q=${letter}*%20genre:%22${genre}%22&type=track&limit=50`,
