@@ -1,0 +1,77 @@
+.genre{
+  margin:0px 0px;
+}
+.row {
+  margin-bottom: 0px;
+}
+
+body {
+    padding-bottom: 1.5em;
+    padding-top: .5em;
+}
+
+#metal-genre{
+  font-size: 70px;
+  font: 50px/50px 'Megrim', Georgia,
+  serif;
+  color: #fff;
+  text-transform: uppercase;
+}
+  #causticLogo{
+    font-size: 70px;
+    font: 50px/50px 'Megrim', Georgia,
+    serif;
+    color: #fff;
+    text-transform: uppercase;
+  }
+  #search{
+    font-size: 60px;
+    max-length:15;
+  }
+
+  #track_name {
+    font-size: 15px;
+    color: #fff;
+}
+.acrostic-play{
+  color: white;
+  float: left;
+  position: relative;
+  top: .5em;
+  margin-right: 1em;
+}
+  .artist{
+    font-size: 20px;
+    color: #fff;
+  }
+  .acrosticLetter {
+    font-size: 70px;
+    font: 50px/50px 'Megrim', Georgia,
+    serif;
+    color: #fff;
+    text-transform: uppercase;
+  }
+    a.song {
+      margin: 5px;
+      text-decoration: none;
+      display: block;
+      text-align: left;
+    }
+
+    a.song i {
+      margin-left: -15px;
+    }
+
+    /* Single letter style */
+    a.song span {
+      text-transform: uppercase;
+      font-weight: bold;
+      margin: 0 5px 0 10px;
+      font-size:20px;
+    }
+
+    body {
+      background-image: url(../images/background.jpg);
+      background-size: cover;
+      background-repeat: no-repeat;
+    }
