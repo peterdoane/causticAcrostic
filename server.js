@@ -20,7 +20,7 @@ app.use(bodyParser.json());
 
 //app.use(express.static(path.join(__dirname, 'public')));
 
-//app.use(playlists);
+app.use(playlists);
 app.use(tracks);
 //app.use(playlists_tracks);
 
@@ -34,6 +34,7 @@ app.use((err, _req, res, _next) => {
   if (err.status) {
     return res.status(err.status).send(err);
   }
+
   console.error(err);
   res.sendStatus(500);
 });
