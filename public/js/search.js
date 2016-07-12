@@ -54,9 +54,9 @@ const getSpotify = function(index, playlistName) {
       }
 
       // Append songs with artist, track name, and url
-      var $player = $('<div><span id="dynamic-search"><i data-song="' + track[0].preview_url + '" class="fa fa-play-circle-o fa-2x acrostic-play" aria-hidden="true"></i>' + track[0].name + '<span id="searchartist"> by ' +  track[0].artist + '</span></span></div>');
+      var $player = $('<div><span id="dynamic-search"><i data-song="' + track.preview_url + '" class="fa fa-play-circle-o fa-2x acrostic-play" aria-hidden="true"></i>' + track.name + '<span id="searchartist"> by ' +  track.artist + '</span></span></div>');
 
-      playlistData.tracks.push(track[0]);
+      playlistData.tracks.push(track);
 
       $playlistContainer.append($player);
       getSpotify(index + 1, playlistName);

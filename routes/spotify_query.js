@@ -36,8 +36,11 @@ router.get('/spotify', ev(validations.get), (req, res, next) => {
         const refined = refineSearch(response, letter);
 
         // Randomly select track from refined array
+
+        var track = refined[Math.floor(Math.random() * refined.length)];
+
         if (refined.length !== 0) {
-          return res.send(refined);
+          return res.send(track);
         }
 
         const err = new Error('No tracks with this genre and letter.');
