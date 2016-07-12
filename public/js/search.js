@@ -1,6 +1,16 @@
 (function() {
 'use strict';
 
+var genres = {
+  "Death Metal": 1,
+  "Black Metal": 2,
+  "Grindcore": 3,
+  "Doom Metal": 4,
+  "Thrash Metal": 5,
+  "Hardcore Punk": 6,
+  "Riot Grrrl": 7
+};
+
 var genre = WINDOW.genre;
 
 //Start with just SAVE PLAYLIST BUTTON
