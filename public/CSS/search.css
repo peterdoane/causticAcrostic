@@ -12,6 +12,17 @@ input{
   border-bottom: none;
 }
 
+
+.song-list {
+  width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.song-list i {
+  font-size: 30px;
+}
+
 #search{
   font-size: 60px;
   max-length:15;

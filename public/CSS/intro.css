@@ -15,6 +15,14 @@
     font-size: 15px;
     color: #fff;
 }
+
+#special {
+  width: 390px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
 .acrostic-play{
   color: white;
   float: left;

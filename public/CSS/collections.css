@@ -94,6 +94,14 @@ body {
     padding-top: .5em;
 }
 
+#selected{
+  font-size: 30px;
+  font: 20px/20px 'Megrim', Georgia,
+  serif;
+  color: blue;
+  text-transform: uppercase;
+}
+
 #metal-genre{
   font-size: 70px;
   font: 50px/50px 'Megrim', Georgia,

@@ -16,7 +16,17 @@ body {
   serif;
   color: #fff;
   text-transform: uppercase;
+
 }
+#metal-genre:hover{
+  background-color: white !important;
+  opacity: 0.5 !important;
+}
+
+#metal-genre:hover a {
+  color: black !important;
+}
+
   #causticLogo{
     font-size: 70px;
     font: 50px/50px 'Megrim', Georgia,
