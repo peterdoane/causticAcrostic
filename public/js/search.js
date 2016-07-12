@@ -35,6 +35,7 @@ const getSpotify = function(index, playlistName) {
       player.play();
 
     })
+
     var $buttonContainer = $('#both_buttons');
     $buttonContainer.append('<a id="collection button"class="waves-effect grey waves-light btn" href="collections.html">View Collection</a>',
       '<a id="save-button" class="waves-effect grey waves-light btn" >Save Playlist</a>');
@@ -48,7 +49,7 @@ const getSpotify = function(index, playlistName) {
     contentType: 'application/json',
     data: {
       letter: playlistName[index],
-      genre: 'grindcore' //Window.genre
+      genre: Window.genre
     }
     });
 
@@ -70,7 +71,6 @@ const getSpotify = function(index, playlistName) {
     $xhr.fail(function(err) {
       console.log(err);
     });
-
 };
 
 
@@ -80,9 +80,6 @@ $searchInput.keypress(function(event) {
     return;
   }
   event.preventDefault();
-
-  $buttonContainer.append('<a class="waves-effect grey waves-light btn" href="collections.html">View Collection</a>',
-    '<a id="save-button" class="waves-effect grey waves-light btn" >Save Playlist</a>');
 
   $save = $('#save-button');
   activateSave();
@@ -114,16 +111,5 @@ var activateSave = function() {
     })
   });
 };
-
-
-//Start with just SAVE PLAYLIST BUTTON
-
-//On change event check to make sure character is a letter
-//Then make $.ajax get request to '/spotify?letter=${letter}&genre=${genre}'
-//After response comes, append track with play button and artist name
-
-//SAVE PLAYLIST button should make a $.ajax POST playlists
-
-//SAVE PLAYLIST button should also change the state so that there are two buttons: one for viewing the playlists collection and one for making a new playlist.
 
 })();
