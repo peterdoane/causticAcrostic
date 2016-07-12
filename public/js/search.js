@@ -68,13 +68,16 @@ const getSpotify = function(index, playlistName) {
 
 };
 
+var $buttonContainer = $('#both_buttons');
+
 $searchInput.keypress(function(event) {
   var key = event.which;
   if (key !== 13) {
     return;
   }
   event.preventDefault();
-
+  $buttonContainer.append('<a class="waves-effect grey waves-light btn" href="collections.html">View Collection</a>',
+    '<a id="save-button" class="waves-effect grey waves-light btn" >Save Playlist</a>');
     // Need to validate string
   var playlistName = $searchInput.val().toUpperCase();
   getSpotify(0, playlistName);
