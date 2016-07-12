@@ -44,7 +44,7 @@ const getSpotify = function(index, playlistName) {
     contentType: 'application/json',
     data: {
       letter: playlistName[index],
-      genre: 'grindcore'
+      genre: 'grindcore' //Window.genre
     }
     });
 
