@@ -19,6 +19,18 @@ var $playlistContainer = $('#playlist-container');
 
 const getSpotify = function(index, playlistName) {
   if (index === playlistName.length) {
+    var player = new Audio();
+
+    $('.acrostic-play').click(function(event) {
+      event.preventDefault();
+
+      player.pause();
+
+      var filename = $(event.target).data('song');
+      player.src = filename;
+      player.play();
+
+    })
     return;
   }
   var $xhr = $.ajax({
