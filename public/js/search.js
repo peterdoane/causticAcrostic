@@ -12,7 +12,8 @@ var genres = {
 };
 
 Window.genre = 'Grindcore';
-var $save = $('#save-button');
+
+var $save;
 
 var $searchInput = $('.search-input-field');
 
@@ -59,6 +60,7 @@ const getSpotify = function(index, playlistName) {
       playlistData.tracks.push(track);
 
       $playlistContainer.append($player);
+
       getSpotify(index + 1, playlistName);
     });
 
@@ -76,8 +78,13 @@ $searchInput.keypress(function(event) {
     return;
   }
   event.preventDefault();
+
   $buttonContainer.append('<a class="waves-effect grey waves-light btn" href="collections.html">View Collection</a>',
     '<a id="save-button" class="waves-effect grey waves-light btn" >Save Playlist</a>');
+
+  $save = $('#save-button');
+  activateSave();
+
     // Need to validate string
   var playlistName = $searchInput.val().toUpperCase();
   getSpotify(0, playlistName);
@@ -86,23 +93,27 @@ $searchInput.keypress(function(event) {
   playlistData.genre_id = genres[Window.genre];
 });
 
-$save.on('click', function(event) {
-  var $xhr = $.ajax({
-    method: 'POST',
-    url: '/playlists',
-    dataType: 'json',
-    contentType: 'application/json',
-    data: JSON.stringify(playlistData)
-  });
+var activateSave = function() {
+  $save.on('click', function(event) {
+    var $xhr = $.ajax({
+      method: 'POST',
+      url: '/playlists',
+      dataType: 'json',
+      contentType: 'application/json',
+      data: JSON.stringify(playlistData)
+    });
 
-  $xhr.done(function(response) {
-    console.log('success');
-  });
+    $xhr.done(function(response) {
+      console.log('success');
+    });
 
-  $xhr.fail(function(error) {
-    console.log(error);
-  })
-});
+    $xhr.fail(function(error) {
+      console.log(error);
+    })
+  });
+};
+
+
 //Start with just SAVE PLAYLIST BUTTON
 
 //On change event check to make sure character is a letter
