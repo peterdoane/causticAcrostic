@@ -35,6 +35,9 @@ const getSpotify = function(index, playlistName) {
       player.play();
 
     })
+    var $buttonContainer = $('#both_buttons');
+    $buttonContainer.append('<a id="collection button"class="waves-effect grey waves-light btn" href="collections.html">View Collection</a>',
+      '<a id="save-button" class="waves-effect grey waves-light btn" >Save Playlist</a>');
     return;
   }
 
@@ -70,7 +73,6 @@ const getSpotify = function(index, playlistName) {
 
 };
 
-var $buttonContainer = $('#both_buttons');
 
 $searchInput.keypress(function(event) {
   var key = event.which;
