@@ -1,9 +1,27 @@
+.searchArtist{
+  font-size: 30px;
+  max-length:15;
+  margin-bottom: 10px;
+  border-top: 1px solid #111;
+  color:white;
+  font: 30px/30px 'Megrim', Georgia,
+  serif;
+
+}
+
+
+/**{
+  border:solid green;
+}*/
+#playlist-container{
+  width:400;
+}
+
 #dynamic-search{
   font-size: 60px;
   max-length:15;
   margin-bottom: 10px;
   border-top: 1px solid #111;
-  border-bottom: 1px solid white;
   color:white;
   font: 50px/50px 'Megrim', Georgia,
   serif;
@@ -14,9 +32,9 @@ input{
 
 
 .song-list {
-  width: 500px;
+  width: 900px;
   margin-left: auto;
-  margin-right: auto;
+
 }
 
 .song-list i {
