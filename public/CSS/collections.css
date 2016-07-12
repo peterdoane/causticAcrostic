@@ -14,6 +14,18 @@
   serif;
 }
 
+ul#nav-mobile > li:hover > a {
+    background: rgba(86, 86, 86, 0.71);
+}
+
+img.logo-img {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 200px;
+    -webkit-filter: invert(1);
+}
+
 .search-input {
 
 }
