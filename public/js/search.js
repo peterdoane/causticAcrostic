@@ -11,11 +11,14 @@ var genres = {
   "Riot Grrrl": 7
 };
 
+Window.genre = 'Grindcore';
 var $save = $('#save-button');
 
 var $searchInput = $('.search-input-field');
 
 var $playlistContainer = $('#playlist-container');
+
+var playlistData = {tracks: []};
 
 const getSpotify = function(index, playlistName) {
   if (index === playlistName.length) {
@@ -33,6 +36,7 @@ const getSpotify = function(index, playlistName) {
     })
     return;
   }
+
   var $xhr = $.ajax({
     method: 'GET',
     url: '/spotify',
@@ -48,9 +52,11 @@ const getSpotify = function(index, playlistName) {
       if ($xhr.status !== 200) {
         return console.log('non 200 status');
       }
+
       // Append songs with artist, track name, and url
       var $player = $('<div><span id="dynamic-search"><i data-song="' + track[0].preview_url + '" class="fa fa-play-circle-o fa-2x acrostic-play" aria-hidden="true"></i>' + track[0].name + '<span id="searchartist"> by ' +  track[0].artist + '</span></span></div>');
 
+      playlistData.tracks.push(track[0]);
 
       $playlistContainer.append($player);
       getSpotify(index + 1, playlistName);
@@ -72,17 +78,27 @@ $searchInput.keypress(function(event) {
     // Need to validate string
   var playlistName = $searchInput.val().toUpperCase();
   getSpotify(0, playlistName);
+
+  playlistData.name = playlistName;
+  playlistData.genre_id = genres[Window.genre];
 });
 
 $save.on('click', function(event) {
-  // var $xhr = $.ajax({
-  //   method: 'POST',
-  //   url: '/playlists',
-  //   dataType: 'json',
-  //   contentType: 'application/json'
-  //   data: ``//data goes here!
-  // });
-  console.log('hello');
+  var $xhr = $.ajax({
+    method: 'POST',
+    url: '/playlists',
+    dataType: 'json',
+    contentType: 'application/json',
+    data: JSON.stringify(playlistData)
+  });
+
+  $xhr.done(function(response) {
+    console.log('success');
+  });
+
+  $xhr.fail(function(error) {
+    console.log(error);
+  })
 });
 //Start with just SAVE PLAYLIST BUTTON
 
