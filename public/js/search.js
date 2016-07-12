@@ -11,6 +11,11 @@ var genre = WINDOW.genre;
 
 //SAVE PLAYLIST button should make a $.ajax POST playlists
 
+//posts need three parts:
+//tracks: [{name: Wound Upon Wound, artist: Gorgoroth, preview_url: metal.com}, etc.]
+//genre_id: 3
+//name: Open
+
 //SAVE PLAYLIST button should also change the state so that there are two buttons: one for viewing the playlists collection and one for making a new playlist.
 
 })();

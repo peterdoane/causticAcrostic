@@ -7,9 +7,15 @@ const ev = require('express-validation');
 const validations = require('../validations/playlists');
 const knex = require('../knex');
 
-router.get('/playlists', (req, res, next) => {
-  knex('playlists')
-    .orderBy('id')
+router.get('/playlists/:genre_id', (req, res, next) => {
+  const genreId = Number.parseInt(req.params.genre_id);
+
+  knex.select('tracks.name', 'tracks.artist', 'tracks.preview_url', 'playlists.id as playlist_id', 'playlists.title as playlist_name', 'playlists_tracks.id as playlist_order')
+    .from('tracks')
+    .innerJoin('playlists_tracks', 'tracks.id', 'playlists_tracks.track_id')
+    .innerJoin('playlists', 'playlists.id', 'playlists_tracks.playlist_id')
+    .where('playlists.genre_id', genreId)
+    .orderBy('playlists_tracks.id')
     .then((playlists) => {
       res.send(playlists);
     })
@@ -35,7 +41,7 @@ router.post('/playlists', (req, res, next) => {
 
         throw err;
       }
-      
+
       return knex('playlists')
         .insert({ genre_id: genre_id, title: name }, '*')
         .then((playlists) => {
