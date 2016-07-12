@@ -20,6 +20,8 @@ router.get('/playlists', (req, res, next) => {
 
 router.post('/playlists', ev(validations.post), (req, res, next) => {
   const genre_id = Number.parseInt(req.body.genre_id);
+  const tracks = req.body.tracks;
+  const  = req.body.playlist;
 
   knex('genres')
     .where('id', genre_id)
