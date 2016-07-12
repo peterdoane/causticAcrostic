@@ -18,10 +18,12 @@ router.get('/playlists', (req, res, next) => {
     });
 });
 
-router.post('/playlists', ev(validations.post), (req, res, next) => {
+
+
+router.post('/playlists', (req, res, next) => {
   const genre_id = Number.parseInt(req.body.genre_id);
   const tracks = req.body.tracks;
-  const  = req.body.playlist;
+  const name = req.body.name;
 
   knex('genres')
     .where('id', genre_id)
@@ -33,14 +35,29 @@ router.post('/playlists', ev(validations.post), (req, res, next) => {
 
         throw err;
       }
-      knex('playlists')
-        .insert(req.body, '*')
+      
+      return knex('playlists')
+        .insert({ genre_id: genre_id, title: name }, '*')
         .then((playlists) => {
-          res.send(playlists[0]);
+          return playlists[0].id;
         })
-        .catch((err) => {
-          next(err);
-        });
+    })
+    .then((playlist_id) => {
+
+      return knex('tracks')
+        .insert(tracks, '*')
+        .then((insertedTracks) => {
+          return insertedTracks.map((track) => {
+            return {track_id: track.id, playlist_id: playlist_id};
+          });
+        })
+    })
+    .then((playlists_tracks) => {
+      knex('playlists_tracks')
+        .insert(playlists_tracks, '*')
+        .then((playlists_tracks) => {
+          res.send(playlists_tracks[0]);
+        })
     })
     .catch((err) => {
       next(err);
