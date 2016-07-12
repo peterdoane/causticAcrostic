@@ -13,59 +13,63 @@ var genres = {
 
 var $save = $('#save-button');
 
-//$.ajax GET request to '/spotify' when enter is pressed
 var $searchInput = $('.search-input-field');
 
-$searchInput.keypress(input, function(event) {
-  var key = event.which;
+var $playlistContainer = $('#playlist-container');
 
-  if (key === 13) {
-    // Need to validate string
-
-    var playlistName = $searchInput.text();
-
-    var i = 0;
-
-    const getSpotify = function() {
-      if (i === playlistName.length) {
-        return;
-      }
-      var $xhr = $.ajax({
-        method: 'GET',
-        url: '/spotify',
-        dataType: 'json',
-        contentType: 'application/json',
-        data: {
-          letter: playlistName[i],
-          genre: WINDOW.genre;
-        }
-
-        $xhr.done(function(data) {
-          if ($xhr.status !== 200) {
-            return console.log('non 200 status');
-          }
-          // Append songs with artist, track name, and url
-
-          i += 1;
-        })
-
-        $xhr.fail(function(err) {
-          console.log(err);
-        })
-
-
-    });
+const getSpotify = function(index, playlistName) {
+  if (index === playlistName.length) {
+    return;
   }
+  var $xhr = $.ajax({
+    method: 'GET',
+    url: '/spotify',
+    dataType: 'json',
+    contentType: 'application/json',
+    data: {
+      letter: playlistName[index],
+      genre: 'grindcore'
+    }
+    });
+
+    $xhr.done(function(track) {
+      if ($xhr.status !== 200) {
+        return console.log('non 200 status');
+      }
+      // Append songs with artist, track name, and url
+      var $player = $('<div><span id="dynamic-search"><i data-song="' + track[0].preview_url + '" class="fa fa-play-circle-o fa-2x acrostic-play" aria-hidden="true"></i>' + track[0].name + '<span id="acrostic-artist"> by' +  track[0].artist + '</span></span></div>');
+
+      $playlistContainer.append($player);
+      getSpotify(index + 1, playlistName);
+    });
+
+    $xhr.fail(function(err) {
+      console.log(err);
+    });
+
+};
+
+$searchInput.keypress(function(event) {
+  var key = event.which;
+  if (key !== 13) {
+    return;
+  }
+  event.preventDefault();
+
+    // Need to validate string
+  var playlistName = $searchInput.val().toUpperCase();
+  getSpotify(0, playlistName);
 });
 
 $save.on('click', function(event) {
-  var $xhr = $.ajax({
-    method: 'POST',
-    url: '/playlists',
-    dataType: 'json',
-    contentType: 'application/json'
-    data: ``//data goes here!
-  });
+  // var $xhr = $.ajax({
+  //   method: 'POST',
+  //   url: '/playlists',
+  //   dataType: 'json',
+  //   contentType: 'application/json'
+  //   data: ``//data goes here!
+  // });
+  console.log('hello');
 });
 //Start with just SAVE PLAYLIST BUTTON
 
@@ -74,11 +78,6 @@ $save.on('click', function(event) {
 //After response comes, append track with play button and artist name
 
 //SAVE PLAYLIST button should make a $.ajax POST playlists
-
-//posts need three parts:
-//tracks: [{name: Wound Upon Wound, artist: Gorgoroth, preview_url: metal.com}, etc.]
-//genre_id: 3
-//name: Open
 
 //SAVE PLAYLIST button should also change the state so that there are two buttons: one for viewing the playlists collection and one for making a new playlist.
 
