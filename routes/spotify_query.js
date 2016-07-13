@@ -35,7 +35,7 @@ router.get('/spotify', ev(validations.get), (req, res, next) => {
 
         const refined = refineSearch(response, letter);
 
-        var track = refined[Math.floor(Math.random() * refined.length)];
+        const track = refined[Math.floor(Math.random() * refined.length)];
 
         if (refined.length !== 0) {
           return res.send(track);
