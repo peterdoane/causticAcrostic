@@ -17,7 +17,7 @@ $('.popup-window').leanModal();
 
   var selectedGenre = 'All';
 
-  var renderPlaylistNames = function(genre) {
+  var renderPlaylistNames = function(selectedGenre) {
     if (selectedGenre === 'All') {
 
       var $xhr = $.ajax({
@@ -28,9 +28,12 @@ $('.popup-window').leanModal();
       });
 
       $xhr.done(function(playlists) {
-        //Render playlist names
+
 
         playlists.forEach(function(playlist) {
+          $('#word-cloud').append($('<li><a id="playlist-words"class="white-text popup-window" href="#modal1">' + playlist.playlist_name + '</a></li>'))
+
+
           // Container.append(playlist data)
         })
         // Add event listener to each playlist to trigger renderTracks
