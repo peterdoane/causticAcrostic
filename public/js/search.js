@@ -11,7 +11,9 @@ var genres = {
   "Riot Grrrl": 7
 };
 
-Window.genre = 'Grindcore';
+var playlistName;
+var genre = localStorage.getItem('genre');
+var spaces = 0;
 
 var $save;
 
@@ -23,12 +25,9 @@ var playlistData = {tracks: []};
 
 var  searchInProgress  = false;
 
+const getSpotify = function(index, playlist) {
 
-
-const getSpotify = function(index, playlistName) {
-
-
-  if (index === playlistName.length) {
+  if (index === playlist.length) {
     var player = new Audio();
 
     $('.acrostic-play').click(function(event) {
@@ -48,6 +47,8 @@ const getSpotify = function(index, playlistName) {
     if ($('#collection-button').length == 0){
       $buttonContainer.append('<a id="collection-button" class="waves-effect grey waves-light btn" href="collections.html">View Collection</a><a id="save-button" class="waves-effect grey waves-light btn">Save Playlist</a><a id="newSearch" class="waves-effect grey waves-light btn">Make New</a>');
     }
+    $save = $('#save-button');
+    activateSave();
     searchInProgress  = false;
     return;
   }
@@ -58,8 +59,8 @@ const getSpotify = function(index, playlistName) {
     dataType: 'json',
     contentType: 'application/json',
     data: {
-      letter: playlistName[index],
-      genre: 'grindcore' //Window.genre
+      letter: playlist[index],
+      genre: genre
     }
     });
 
@@ -75,11 +76,17 @@ const getSpotify = function(index, playlistName) {
       // Append songs with artist, track name, and url
       var $player = $('<div><span id="dynamic-search"><i data-song="' + track.preview_url + '" class="fa fa-play-circle-o fa-2x acrostic-play" aria-hidden="true"></i>' + track.name + '<span id="searchartist"> by ' +  track.artist + '</span></span></div>');
 
+      if (playlistName[index + spaces] === ' ') {
+        $playlistContainer.append($('<div id="dynamic-search" class="invisible">invisible</div>'));
+
+        spaces += 1;
+     }
+
       playlistData.tracks.push(track);
 
       $playlistContainer.append($player);
 
-      getSpotify(index + 1, playlistName);
+      getSpotify(index + 1, playlist);
     });
 
     $xhr.fail(function(err) {
@@ -97,8 +104,6 @@ $searchInput.keypress(function(event) {
     return;
   }
   event.preventDefault();
-  $save = $('#save-button');
-  activateSave();
 
     // Need to validate string
 
@@ -110,10 +115,13 @@ $searchInput.keypress(function(event) {
     inActivePage();
 
     $playlistContainer.html('');
-    var playlistName = $searchInput.val().toUpperCase();
-    getSpotify(0, playlistName);
+
+    playlistName = $searchInput.val().toUpperCase();
+    var withoutSpaces = playlistName.split(' ').join('')
+    
+    getSpotify(0, withoutSpaces);
     playlistData.name = playlistName;
-    playlistData.genre_id = genres[Window.genre];
+    playlistData.genre_id = genres[genre];
   }
 
 });
@@ -182,16 +190,5 @@ if (search){
   var playlistNameGlobal = search.toUpperCase();
   getSpotify(0, playlistNameGlobal);
 }
-
-
-//Start with just SAVE PLAYLIST BUTTON
-
-//On change event check to make sure character is a letter
-//Then make $.ajax get request to '/spotify?letter=${letter}&genre=${genre}'
-//After response comes, append track with play button and artist name
-
-//SAVE PLAYLIST button should make a $.ajax POST playlists
-
-//SAVE PLAYLIST button should also change the state so that there are two buttons: one for viewing the playlists collection and one for making a new playlist.
 
 })();
