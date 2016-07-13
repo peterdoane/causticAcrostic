@@ -17,6 +17,7 @@
   width:400;
 }
 
+
 #dynamic-search{
   font-size: 60px;
   max-length:15;
@@ -205,3 +206,7 @@ body {
       background-size: cover;
       background-repeat: no-repeat;
     }
+
+.invisible {
+  visibility: hidden;
+}
