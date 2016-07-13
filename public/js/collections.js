@@ -13,6 +13,10 @@ $('.popup-window').leanModal();
     "Riot Grrrl": 7
   };
 
+  var $modal = $('<div id="modal1" class="modal"><div class="modal-content"><ul id="track-list" class="fixed"></ul></div></div>');
+
+  $('#word-cloud').append($modal);
+
   var genre = localStorage.getItem('genre');
 
   var selectedGenre = 'All';
@@ -87,9 +91,8 @@ $('.popup-window').leanModal();
     });
 
     $xhr.done(function(tracks) {
-      var $modal = $('<div id="modal1" class="modal"><div class="modal-content"><ul id="track-list" class="fixed"></ul></div></div>');
 
-      $('#word-cloud').append($modal);
+      $('#track-list').empty();
 
       tracks.forEach(function(track) {
         $('#track-list').append($('<li><div><span id="dynamic-search"><i data-song="' + track.preview_url + '" class="fa fa-play-circle-o fa-2x acrostic-play" aria-hidden="true"></i>' + track.name + '<span id="searchartist"> by ' +  track.artist + '</span></span></div></li>'))
