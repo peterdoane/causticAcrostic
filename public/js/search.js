@@ -11,7 +11,10 @@ var genres = {
   "Riot Grrrl": 7
 };
 
-Window.genre = 'Grindcore';
+var genre = localStorage.getItem('genre');
+
+var spaces = 0;
+var playlistName;
 
 var $save;
 
