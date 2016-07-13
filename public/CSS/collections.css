@@ -136,6 +136,13 @@ body {
   color: #fff;
   text-transform: uppercase;
 }
+#wordcloud{
+  font-size: 30px;
+  font: 20px/20px 'Megrim', Georgia,
+  serif;
+  color: #fff;
+  text-transform: uppercase;
+}
   #causticLogo{
     font-size: 70px;
     font: 50px/50px 'Megrim', Georgia,

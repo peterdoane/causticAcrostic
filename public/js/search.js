@@ -121,6 +121,7 @@ $searchInput.keypress(function(event) {
     return;
   }
   event.preventDefault();
+  $playlistContainer.empty();
 
     // Need to validate string
   playlistName = $searchInput.val().toUpperCase();
