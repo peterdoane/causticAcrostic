@@ -21,7 +21,9 @@ var $playlistContainer = $('#playlist-container');
 var playlistData = {tracks: []};
 
 const getSpotify = function(index, playlistName) {
+  console.log(playlistName);
   if (index === playlistName.length) {
+
     var player = new Audio();
 
     $('.acrostic-play').click(function(event) {
@@ -41,7 +43,7 @@ const getSpotify = function(index, playlistName) {
 
     $save = $('#save-button');
     activateSave();
-    
+
     return;
   }
 
@@ -68,6 +70,7 @@ const getSpotify = function(index, playlistName) {
 
       $playlistContainer.append($player);
 
+
       getSpotify(index + 1, playlistName);
     });
 
@@ -75,22 +78,6 @@ const getSpotify = function(index, playlistName) {
       console.log(err);
     });
 };
-
-
-$searchInput.keypress(function(event) {
-  var key = event.which;
-  if (key !== 13) {
-    return;
-  }
-  event.preventDefault();
-
-    // Need to validate string
-  var playlistName = $searchInput.val().toUpperCase();
-  getSpotify(0, playlistName);
-
-  playlistData.name = playlistName;
-  playlistData.genre_id = genres[genre];
-});
 
 var activateSave = function() {
   $save.on('click', function(event) {
@@ -111,5 +98,22 @@ var activateSave = function() {
     })
   });
 };
+
+$searchInput.keypress(function(event) {
+  var key = event.which;
+  if (key !== 13) {
+    return;
+  }
+  event.preventDefault();
+
+    // Need to validate string
+  var playlistName = $searchInput.val().toUpperCase();
+
+  var withoutSpaces = playlistName.split(' ').join('');
+  getSpotify(0, withoutSpaces);
+
+  playlistData.name = playlistName;
+  playlistData.genre_id = genres[genre];
+});
 
 })();
