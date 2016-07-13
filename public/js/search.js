@@ -25,7 +25,9 @@ var $playlistContainer = $('#playlist-container');
 var playlistData = {tracks: []};
 
 const getSpotify = function(index, playlistName) {
+  console.log(playlistName);
   if (index === playlistName.length) {
+
     var player = new Audio();
 
     $('.acrostic-play').click(function(event) {
@@ -39,11 +41,17 @@ const getSpotify = function(index, playlistName) {
 
     })
     var $buttonContainer = $('#both_buttons');
+
     event.preventDefault();
-    if ($('#collection-button').length == 0){
+
+    if ($('#collection-button').length == 0) {
       $buttonContainer.append('<a id="collection-button"class="waves-effect grey waves-light btn" href="collections.html">View Collection</a>',
       '<a id="save-button" class="waves-effect grey waves-light btn" >Save Playlist</a>');
     }
+
+    $save = $('#save-button');
+    activateSave();
+
     return;
   }
 
@@ -70,6 +78,7 @@ const getSpotify = function(index, playlistName) {
 
       $playlistContainer.append($player);
 
+
       getSpotify(index + 1, playlistName);
     });
 
@@ -80,25 +89,6 @@ const getSpotify = function(index, playlistName) {
 };
 
 
-$searchInput.keypress(function(event) {
-  var key = event.which;
-  if (key !== 13) {
-    return;
-  }
-  event.preventDefault();
-
-
-
-  $save = $('#save-button');
-  activateSave();
-
-    // Need to validate string
-  var playlistName = $searchInput.val().toUpperCase();
-  getSpotify(0, playlistName);
-
-  playlistData.name = playlistName;
-  playlistData.genre_id = genres[Window.genre];
-});
 
 var activateSave = function() {
   $save.on('click', function(event) {
@@ -121,14 +111,22 @@ var activateSave = function() {
 };
 
 
-//Start with just SAVE PLAYLIST BUTTON
+$searchInput.keypress(function(event) {
+  var key = event.which;
+  if (key !== 13) {
+    return;
+  }
+  event.preventDefault();
 
-//On change event check to make sure character is a letter
-//Then make $.ajax get request to '/spotify?letter=${letter}&genre=${genre}'
-//After response comes, append track with play button and artist name
+    // Need to validate string
+  var playlistName = $searchInput.val().toUpperCase();
 
-//SAVE PLAYLIST button should make a $.ajax POST playlists
+  var withoutSpaces = playlistName.split(' ').join('');
+  getSpotify(0, withoutSpaces);
 
-//SAVE PLAYLIST button should also change the state so that there are two buttons: one for viewing the playlists collection and one for making a new playlist.
+  playlistData.name = playlistName;
+  playlistData.genre_id = genres[genre];
+});
+
 
 })();
