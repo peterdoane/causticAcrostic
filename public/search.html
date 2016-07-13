@@ -1,47 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <link href="https://fonts.googleapis.com/css?family=Megrim|Roboto+Slab:300" rel="stylesheet" type="text/css">
-  <meta charset="UTF-8">
-  <title>CausticAcrostic</title>
-  <link rel="stylesheet" href="./CSS/materialize.min.css">
-  <link rel="stylesheet" type="text/css" href="./CSS/search.css">
-  <link rel="stylesheet" href="https://opensource.keycdn.com/fontawesome/4.6.3/font-awesome.min.css">
-  <style type="text/css">body, a:hover {cursor: url(http://cur.cursors-4u.net/others/oth-2/oth110.cur), progress !important;}
-  </style><a href="http://www.cursors-4u.com/cursor/2006/02/24/oth110.html" target="_blank" title="Skull">
-<img src="http://cur.cursors-4u.net/cursor.png" border="0" alt="Skull" style="position:absolute; top: 0px; right: 0px;" /></a>
+  <head>
+    <link href="https://fonts.googleapis.com/css?family=Megrim|Roboto+Slab:300" rel="stylesheet" type="text/css">
+    <meta charset="UTF-8">
+    <title>CausticAcrostic</title>
+    <link rel="stylesheet" href="./CSS/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="./CSS/search.css">
+    <link rel="stylesheet" href="https://opensource.keycdn.com/fontawesome/4.6.3/font-awesome.min.css">
+    <style type="text/css">body, a:hover {cursor: url(http://cur.cursors-4u.net/others/oth-2/oth110.cur), progress !important;}
+    </style><a href="http://www.cursors-4u.com/cursor/2006/02/24/oth110.html" target="_blank" title="Skull">
+    <img src="http://cur.cursors-4u.net/cursor.png" border="0" alt="Skull" style="position:absolute; top: 0px; right: 0px;" /></a>
+  </head>
 
-</head>
-<body link="white">
-<div class="flex-container">
-  <form class="col s12">
-    <div class="row">
-      <div class="search-input">
-        <input type="text" class="search-input-field" placeholder="Press Enter to Search" length="15">
-        <div class="search-input-counter"></div>
+  <body link="white">
+    <div class="flex-container">
+      <form class="col s12">
+        <div class="row">
+
+          <div class="search-input">
+            <input type="text" class="search-input-field" placeholder="Press Enter  to Search" length="15">
+            <div class="search-input-counter"></div>
+          </div>
+
+          <div class="search-input input-field col s12 flex-container">
+          </div>
+
+          <div id="both_buttons"></div>
+
+        </div>
+      </form>
+      
+      <div id="playlist-container" style="overflow-y: scroll; height:400px;"  class="song-list">
+
       </div>
-      <div class="search-input input-field col s12 flex-container">
-      </div>
-      <div id="both_buttons"></div>
-      <!-- <a class="waves-effect grey waves-light btn" href='collections.html'>View Collection</a>
-      <a id="save-button" class="waves-effect grey waves-light btn" >Save Playlist</a> -->
-      <!--  start with just save playlist button and after clicking save both view collection and make
-    another playlists buttons appear-->
     </div>
-  </form>
-  <div id="playlist-container" style="overflow-y: scroll; height:400px;" class="song-list">
-    <!--  append playlist button before every track use song name and band-->
-
-</div>
-</div>
 
 
-  <!-- <script   src="https://code.jquery.com/jquery-2.2.4.min.js"
-  integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
-  crossorigin="anonymous"></script> -->
-
-  <script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
-  <script type="text/javascript" src="js/materialize.min.js"></script>
-  <script type="text/javascript" src="js/search.js"></script>
-</body>
-</html>
+    <script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
+    <script type="text/javascript" src="js/materialize.min.js"></script>
+    <script type="text/javascript" src="js/search.js"></script>
+  </body>
+  </html>
