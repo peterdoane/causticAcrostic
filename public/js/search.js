@@ -10,11 +10,10 @@ var genres = {
   "Hardcore Punk": 6,
   "Riot Grrrl": 7
 };
-
+var playlistName;
 var genre = localStorage.getItem('genre');
 
 var spaces = 0;
-var playlistName;
 
 var $save;
 
@@ -24,9 +23,8 @@ var $playlistContainer = $('#playlist-container');
 
 var playlistData = {tracks: []};
 
-const getSpotify = function(index, playlistName) {
-  console.log(playlistName);
-  if (index === playlistName.length) {
+const getSpotify = function(index, playlist) {
+  if (index === playlist.length) {
 
     var player = new Audio();
 
@@ -61,8 +59,8 @@ const getSpotify = function(index, playlistName) {
     dataType: 'json',
     contentType: 'application/json',
     data: {
-      letter: playlistName[index],
-      genre: 'grindcore' //Window.genre
+      letter: playlist[index],
+      genre: genre
     }
     });
 
@@ -74,12 +72,18 @@ const getSpotify = function(index, playlistName) {
       // Append songs with artist, track name, and url
       var $player = $('<div><span id="dynamic-search"><i data-song="' + track.preview_url + '" class="fa fa-play-circle-o fa-2x acrostic-play" aria-hidden="true"></i>' + track.name + '<span id="searchartist"> by ' +  track.artist + '</span></span></div>');
 
+      if (playlistName[index + spaces] === ' ') {
+        $playlistContainer.append($('<div id="dynamic-search" class="invisible">invisible</div>'))
+
+        spaces += 1;
+      }
+
       playlistData.tracks.push(track);
 
       $playlistContainer.append($player);
 
 
-      getSpotify(index + 1, playlistName);
+      getSpotify(index + 1, playlist);
     });
 
     $xhr.fail(function(err) {
@@ -119,7 +123,7 @@ $searchInput.keypress(function(event) {
   event.preventDefault();
 
     // Need to validate string
-  var playlistName = $searchInput.val().toUpperCase();
+  playlistName = $searchInput.val().toUpperCase();
 
   var withoutSpaces = playlistName.split(' ').join('');
   getSpotify(0, withoutSpaces);
