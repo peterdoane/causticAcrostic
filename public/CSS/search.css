@@ -18,6 +18,8 @@
 }
 
 
+
+
 #dynamic-search{
   font-size: 60px;
   max-length:15;
@@ -188,8 +190,6 @@ body {
     font-size: 15px;
     color: #fff;
 }
-
-
 .acrostic-play{
   color: white;
   float: left;
@@ -235,4 +235,21 @@ body {
 
 .invisible {
   visibility: hidden;
+}
+
+
+
+.blurredElement {
+
+     /* Any browser which supports CSS3 */
+    filter: blur(3px);
+
+    /* Firefox */
+    filter: url("blur.svg#gaussian_blur");
+
+    /* Webkit */
+    -webkit-filter: blur(5px);
+
+    /* Opera */
+    -o-filter: blur(5px);
 }
