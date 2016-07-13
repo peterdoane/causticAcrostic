@@ -11,14 +11,13 @@ var genres = {
   "Riot Grrrl": 7
 };
 
-Window.genre = 'Grindcore';
+var genre = localStorage.getItem('genre');
 
 var $save;
-
 var $searchInput = $('.search-input-field');
-
 var $playlistContainer = $('#playlist-container');
 
+// Data to push to database when playlist is saved
 var playlistData = {tracks: []};
 
 const getSpotify = function(index, playlistName) {
@@ -49,7 +48,7 @@ const getSpotify = function(index, playlistName) {
     contentType: 'application/json',
     data: {
       letter: playlistName[index],
-      genre: Window.genre
+      genre: genre
     }
     });
 
@@ -89,7 +88,7 @@ $searchInput.keypress(function(event) {
   getSpotify(0, playlistName);
 
   playlistData.name = playlistName;
-  playlistData.genre_id = genres[Window.genre];
+  playlistData.genre_id = genres[genre];
 });
 
 var activateSave = function() {
