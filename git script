@@ -1,0 +1,11 @@
+Every issues
+1.check out feature branch
+2.add and commit regularly
+3.once the issue is resolved checkout master
+4.git pull
+5.checkout feature branch
+6.git rebase master
+7.git checkout master
+8.git merge feature branch
+9.git push
+10.git branch -D feature branch

@@ -10,19 +10,19 @@ var genres = {
   "Hardcore Punk": 6,
   "Riot Grrrl": 7
 };
-var playlistName;
-var genre = localStorage.getItem('genre');
-var spaces = 0;
+
+Window.genre = 'Grindcore';
+
 var $save;
+
 var $searchInput = $('.search-input-field');
+
 var $playlistContainer = $('#playlist-container');
 
-// Data to push to database when playlist is saved
 var playlistData = {tracks: []};
 
-const getSpotify = function(index, playlist) {
-  if (index === playlist.length) {
-
+const getSpotify = function(index, playlistName) {
+  if (index === playlistName.length) {
     var player = new Audio();
 
     $('.acrostic-play').click(function(event) {
@@ -35,14 +35,12 @@ const getSpotify = function(index, playlist) {
       player.play();
 
     })
-
     var $buttonContainer = $('#both_buttons');
-    $buttonContainer.append('<a id="collection button"class="waves-effect grey waves-light btn" href="collections.html">View Collection</a>',
+    event.preventDefault();
+    if ($('#collection-button').length == 0){
+      $buttonContainer.append('<a id="collection-button"class="waves-effect grey waves-light btn" href="collections.html">View Collection</a>',
       '<a id="save-button" class="waves-effect grey waves-light btn" >Save Playlist</a>');
-
-    $save = $('#save-button');
-    activateSave();
-
+    }
     return;
   }
 
@@ -52,8 +50,8 @@ const getSpotify = function(index, playlist) {
     dataType: 'json',
     contentType: 'application/json',
     data: {
-      letter: playlist[index],
-      genre: genre
+      letter: playlistName[index],
+      genre: 'grindcore' //Window.genre
     }
     });
 
@@ -65,24 +63,39 @@ const getSpotify = function(index, playlist) {
       // Append songs with artist, track name, and url
       var $player = $('<div><span id="dynamic-search"><i data-song="' + track.preview_url + '" class="fa fa-play-circle-o fa-2x acrostic-play" aria-hidden="true"></i>' + track.name + '<span id="searchartist"> by ' +  track.artist + '</span></span></div>');
 
-      if (playlistName[index + spaces] === ' ') {
-        $playlistContainer.append($('<div id="dynamic-search" class="invisible">invisible</div>'))
-
-        spaces += 1;
-      }
-
       playlistData.tracks.push(track);
 
       $playlistContainer.append($player);
 
-
-      getSpotify(index + 1, playlist);
+      getSpotify(index + 1, playlistName);
     });
 
     $xhr.fail(function(err) {
       console.log(err);
     });
+
 };
+
+
+$searchInput.keypress(function(event) {
+  var key = event.which;
+  if (key !== 13) {
+    return;
+  }
+  event.preventDefault();
+
+
+
+  $save = $('#save-button');
+  activateSave();
+
+    // Need to validate string
+  var playlistName = $searchInput.val().toUpperCase();
+  getSpotify(0, playlistName);
+
+  playlistData.name = playlistName;
+  playlistData.genre_id = genres[Window.genre];
+});
 
 var activateSave = function() {
   $save.on('click', function(event) {
@@ -104,21 +117,15 @@ var activateSave = function() {
   });
 };
 
-$searchInput.keypress(function(event) {
-  var key = event.which;
-  if (key !== 13) {
-    return;
-  }
-  event.preventDefault();
 
-    // Need to validate string
-  playlistName = $searchInput.val().toUpperCase();
+//Start with just SAVE PLAYLIST BUTTON
 
-  var withoutSpaces = playlistName.split(' ').join('');
-  getSpotify(0, withoutSpaces);
+//On change event check to make sure character is a letter
+//Then make $.ajax get request to '/spotify?letter=${letter}&genre=${genre}'
+//After response comes, append track with play button and artist name
 
-  playlistData.name = playlistName;
-  playlistData.genre_id = genres[genre];
-});
+//SAVE PLAYLIST button should make a $.ajax POST playlists
+
+//SAVE PLAYLIST button should also change the state so that there are two buttons: one for viewing the playlists collection and one for making a new playlist.
 
 })();

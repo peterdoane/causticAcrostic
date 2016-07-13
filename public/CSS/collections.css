@@ -22,7 +22,7 @@ img.logo-img {
     position: absolute;
     right: 0;
     top: 0;
-    width: 200px;
+    width: 100px;
     -webkit-filter: invert(1);
 }
 
@@ -194,3 +194,10 @@ body {
       background-size: cover;
       background-repeat: no-repeat;
     }
+
+
+
+
+#playlist-container{
+  margin-left: 80px;
+}
