@@ -38,6 +38,10 @@ const getSpotify = function(index, playlistName) {
     var $buttonContainer = $('#both_buttons');
     $buttonContainer.append('<a id="collection button"class="waves-effect grey waves-light btn" href="collections.html">View Collection</a>',
       '<a id="save-button" class="waves-effect grey waves-light btn" >Save Playlist</a>');
+
+    $save = $('#save-button');
+    activateSave();
+    
     return;
   }
 
@@ -79,9 +83,6 @@ $searchInput.keypress(function(event) {
     return;
   }
   event.preventDefault();
-
-  $save = $('#save-button');
-  activateSave();
 
     // Need to validate string
   var playlistName = $searchInput.val().toUpperCase();
