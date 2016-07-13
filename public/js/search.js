@@ -36,8 +36,11 @@ const getSpotify = function(index, playlistName) {
 
     })
     var $buttonContainer = $('#both_buttons');
-    $buttonContainer.append('<a id="collection button"class="waves-effect grey waves-light btn" href="collections.html">View Collection</a>',
+    event.preventDefault();
+    if ($('#collection-button').length == 0){
+      $buttonContainer.append('<a id="collection-button"class="waves-effect grey waves-light btn" href="collections.html">View Collection</a>',
       '<a id="save-button" class="waves-effect grey waves-light btn" >Save Playlist</a>');
+    }
     return;
   }
 
@@ -81,8 +84,7 @@ $searchInput.keypress(function(event) {
   }
   event.preventDefault();
 
-  $buttonContainer.append('<a class="waves-effect grey waves-light btn" href="collections.html">View Collection</a>',
-    '<a id="save-button" class="waves-effect grey waves-light btn" >Save Playlist</a>');
+
 
   $save = $('#save-button');
   activateSave();

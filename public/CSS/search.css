@@ -108,6 +108,30 @@ input{
   margin-right:auto;
   width:960px;
 }
+/* do not group these rules */
+*::-webkit-input-placeholder {
+  font-size: 28px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+*:-moz-placeholder {
+    /* FF 4-18 */
+  font-size: 28px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+*::-moz-placeholder {
+    /* FF 19+ */
+  font-size: 28px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+*:-ms-input-placeholder {
+    /* IE 10+ */
+  font-size: 28px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
 
   a.song {
     margin: 5px;
