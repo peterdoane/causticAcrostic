@@ -31,7 +31,15 @@ $('.popup-window').leanModal();
 
 
         playlists.forEach(function(playlist) {
-          $('#word-cloud').append($('<li><a id="playlist-words"class="white-text popup-window" href="#modal1">' + playlist.playlist_name + '</a></li>'))
+          var $playlist = $('<li><a id="playlist-words"class="white-text modal-trigger" href="#modal1">' + playlist.playlist_name + '</a></li>')
+
+          $playlist.on('click', function() {
+            getTracks(playlist.playlist_id);
+
+          })
+
+          $('#word-cloud').append($playlist)
+
 
 
           // Container.append(playlist data)
@@ -70,7 +78,7 @@ $('.popup-window').leanModal();
     }
   };
 
-  var renderTracks = function(playlistId) {
+  var getTracks = function(playlistId) {
     var $xhr = $.ajax({
       method: 'GET',
       url: 'playlists/' + playlistId + '/tracks',
@@ -79,7 +87,15 @@ $('.popup-window').leanModal();
     });
 
     $xhr.done(function(tracks) {
-      //render modal
+      var $modal = $('<div id="modal1" class="modal"><div class="modal-content"><ul id="track-list" class="fixed"></ul></div></div>');
+
+      $('#word-cloud').append($modal);
+
+      tracks.forEach(function(track) {
+        $('#track-list').append($('<li><div><span id="dynamic-search"><i data-song="' + track.preview_url + '" class="fa fa-play-circle-o fa-2x acrostic-play" aria-hidden="true"></i>' + track.name + '<span id="searchartist"> by ' +  track.artist + '</span></span></div></li>'))
+      });
+
+      $('#modal1').openModal();
     })
   }
   renderPlaylistNames(selectedGenre)
