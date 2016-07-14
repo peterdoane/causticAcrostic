@@ -267,6 +267,7 @@ body {
 
 .track-wrapper:hover .track-info {
   font-size: 15px;
+  font: 15px/15px 'Megrim', Georgia, serif;
   color: #fff;
   visibility: visible;
   display: block;
