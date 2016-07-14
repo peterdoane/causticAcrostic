@@ -14,6 +14,11 @@
   serif;
 }
 
+#searchartist{
+  font-size: 11px !important;
+}
+
+
 ul#nav-mobile > li:hover > a {
     background: rgba(86, 86, 86, 0.71);
 }
@@ -155,10 +160,20 @@ body {
 }
 .acrostic-play{
   color: white;
-  float: left;
-  position: relative;
-  top: .5em;
   margin-right: 1em;
+}
+
+.modalText{
+  font-size: 18px;
+  font: 18px/18px 'Megrim', Georgia,
+  serif;
+  color: #fff;
+  text-transform: uppercase;
+}
+
+.firstLetter{
+  font-size: 28px !important;
+
 }
   .artist{
     font-size: 20px;
@@ -204,6 +219,9 @@ body {
       width:400;
     }
 
+#playlist-words:hover{
+  color: grey !important;
+}
 #playlist-words{
   margin-left: 80px;
   font-size: 70px;
@@ -211,6 +229,7 @@ body {
   serif;
   color: #fff;
   text-transform: uppercase;
+
 }
 
 .genre-selection{

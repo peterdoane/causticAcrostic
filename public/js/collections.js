@@ -13,7 +13,7 @@ $('.popup-window').leanModal();
     "Riot Grrrl": 7
   };
 
-  var $modal = $('<div id="modal1" class="modal"><div class="modal-content"><ul id="track-list" class="fixed"></ul></div></div>');
+  var $modal = $('<div id="modal1" class="modal"><div class="modal-content"><ul id="track-list"></ul></div></div>');
 
   $('#word-cloud').append($modal);
 
@@ -103,9 +103,25 @@ $('.popup-window').leanModal();
 
       $('#track-list').empty();
 
-      tracks.forEach(function(track) {
-        $('#track-list').append($('<li><div><span id="dynamic-search"><i data-song="' + track.preview_url + '" class="fa fa-play-circle-o fa-2x acrostic-play" aria-hidden="true"></i>' + track.name + '<span id="searchartist"> by ' +  track.artist + '</span></span></div></li>'))
+      var htmlArr = tracks.map(function(track) {
+        var trackNm = track.name.split('');
+        var firstLtr = trackNm[0];
+        trackNm.shift();
+        var nme = trackNm.join('');
+        return '<li>' +
+        '<p id="dynamic-search">' +
+        '<i data-song="' + track.preview_url + '" class="fa fa-play-circle-o fa-3x acrostic-play" aria-hidden="true"></i>' +
+        '<span class="modalText">' + '<span class="firstLetter">'+ firstLtr + '</span>' +
+        nme +
+        '<span id="searchartist"> by ' + track.artist + '</span>' +
+        '</span>' +
+        '</p>' +
+        '</li>';
       });
+
+      var html = htmlArr.join('');
+
+      $('#track-list').html(html);
 
       var player = new Audio();
 
