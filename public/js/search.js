@@ -99,10 +99,26 @@ const getSpotify = function(index, playlist) {
 
 
 $searchInput.keypress(function(event) {
+
+  var range = function(number){
+    console.log(number);
+  	if(number == 13 || number > 64 && number < 90 || number > 96 && number < 122){
+  		return false;
+  	} else{
+  	return true;
+  	}
+  }
+
   var key = event.which;
+  if(range(key)){
+    Materialize.toast('Letters Only!', 8000)
+    return;
+  }
+
   if (key !== 13) {
     return;
   }
+
   event.preventDefault();
 
     // Need to validate string
@@ -146,25 +162,6 @@ var activateSave = function() {
   });
 };
 
-var getQueryVariable = function(variable) {
-
-    //window.location.search would be something like this ?s=abcd
-    //remove '?' from the parameter
-    //window.location.search contains first character as '?'
-    var query = window.location.search.substring(1);
-    var vars = query.split('&'); //split
-    for (var i = 0; i < vars.length; i++) {
-        var pair = vars[i].split('=');
-
-        //decodeURIComponent is a standard js method which decodes a URI component
-        if (decodeURIComponent(pair[0]) == variable) {
-            return decodeURIComponent(pair[1]);
-        }
-    }
-    console.log('Query variable %s not found', variable);
-}
-
-//it will add a blur effect to the page and also disable the input bar
 var inActivePage = function() {
   $('.search-input-field').addClass('blurredElement');
   $('.search-input-field').prop('disabled', true);
@@ -182,13 +179,4 @@ var activePage = function() {
 $(document).on('click', "#newSearch", function () {
   activePage();
 });
-
-
-//get the search params from the url
-var search = getQueryVariable('s');
-if (search){
-  var playlistNameGlobal = search.toUpperCase();
-  getSpotify(0, playlistNameGlobal);
-}
-
 })();
