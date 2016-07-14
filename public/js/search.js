@@ -33,11 +33,22 @@ const getSpotify = function(index, playlist) {
     var $buttonContainer = $('#both_buttons');
     event.preventDefault();
 
+    var collectionButton = '<a id="collection-button" class="waves-effect grey waves-light btn" href="collections.html">View Collection</a>';
+    var saveButton = '<a id="save-button" class="waves-effect grey waves-light btn">Save Playlist</a>';
+    var makeNewButton = '<a id="newSearch" class="waves-effect grey waves-light btn">Make New</a>';
+
     if ($('#collection-button').length == 0){
-      $buttonContainer.append('<a id="collection-button" class="waves-effect grey waves-light btn" href="collections.html">View Collection</a><a id="save-button" class="waves-effect grey waves-light btn">Save Playlist</a><a id="newSearch" class="waves-effect grey waves-light btn">Make New</a>');
+      $buttonContainer.append(saveButton);
+
+      // create an event handler that appends other 2 buttons on click of saveButton.
     }
     $save = $('#save-button');
-    activateSave();
+    activateSave(function(){
+
+      $buttonContainer.html(collectionButton + makeNewButton);
+
+    });
+
     searchInProgress  = false;
     return;
   }
@@ -155,7 +166,7 @@ $searchInput.keypress(function(event) {
 
 });
 
-var activateSave = function() {
+var activateSave = function(callback) {
   $save.on('click', function(event) {
     var $xhr = $.ajax({
       method: 'POST',
@@ -167,10 +178,12 @@ var activateSave = function() {
 
     $xhr.done(function(response) {
       console.log('success');
+      callback();
     });
 
     $xhr.fail(function(error) {
       console.log(error);
+      // 
     })
   });
 };
