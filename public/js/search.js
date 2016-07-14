@@ -14,6 +14,7 @@ var genres = {
 var playlistName;
 var genre = localStorage.getItem('genre');
 var spaces = 0;
+var player = new Audio();
 
 var $save;
 
@@ -28,18 +29,6 @@ var  searchInProgress  = false;
 const getSpotify = function(index, playlist) {
 
   if (index === playlist.length) {
-    var player = new Audio();
-
-    $('.acrostic-play').click(function(event) {
-      event.preventDefault();
-
-      player.pause();
-
-      var filename = $(event.target).data('song');
-      player.src = filename;
-      player.play();
-
-    })
 
     var $buttonContainer = $('#both_buttons');
     event.preventDefault();
@@ -85,6 +74,17 @@ const getSpotify = function(index, playlist) {
       playlistData.tracks.push(track);
 
       $playlistContainer.append($player);
+
+      $('.acrostic-play').click(function(event) {
+        event.preventDefault();
+
+        player.pause();
+
+        var filename = $(event.target).data('song');
+        player.src = filename;
+        player.play();
+
+      })
 
       getSpotify(index + 1, playlist);
     });

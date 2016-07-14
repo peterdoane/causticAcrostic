@@ -111,7 +111,7 @@ $('.popup-window').leanModal();
         event.preventDefault();
 
         player.pause();
-
+        
         var filename = $(event.target).data('song');
         player.src = filename;
         player.play();
