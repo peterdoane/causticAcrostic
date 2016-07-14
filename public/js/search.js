@@ -30,7 +30,7 @@ var searchInProgress  = false;
 $searchInput.keypress(function(event) {
 
   var range = function(number){
-  	if(number == 13 || number > 64 && number < 90 || number > 96 && number < 122){
+  	if(number == 13 || number == 32 || number > 64 && number < 90 || number > 96 && number < 123){
   		return false;
   	} else{
   	return true;
@@ -39,7 +39,7 @@ $searchInput.keypress(function(event) {
 
   var key = event.which;
   if(range(key)){
-    Materialize.toast('Letters Only!', 8000)
+    Materialize.toast('Letters Only Knucklehead!', 2750)
     return;
   }
 
