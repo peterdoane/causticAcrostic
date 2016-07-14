@@ -21,6 +21,14 @@ $('.popup-window').leanModal();
 
   var selectedGenre = 'All';
 
+  $('.genre-selection').on('click', function(event) {
+    selectedGenre = event.target.textContent;
+    $('#word-cloud').empty();
+    renderPlaylistNames(selectedGenre);
+
+    $('#causticLogo').text(selectedGenre);
+  });
+
   var renderPlaylistNames = function(selectedGenre) {
     if (selectedGenre === 'All') {
 
