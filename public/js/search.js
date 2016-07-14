@@ -17,6 +17,7 @@ var spaces = 0;
 var player = document.createElement('audio')  //new Audio();
 
 var $save;
+var withoutSpaces;
 
 var $searchInput = $('.search-input-field');
 
@@ -24,12 +25,11 @@ var $playlistContainer = $('#playlist-container');
 
 var playlistData = {tracks: []};
 
-var  searchInProgress  = false;
+var searchInProgress  = false;
 
 $searchInput.keypress(function(event) {
 
   var range = function(number){
-    console.log(number);
   	if(number == 13 || number > 64 && number < 90 || number > 96 && number < 122){
   		return false;
   	} else{
@@ -53,7 +53,6 @@ $searchInput.keypress(function(event) {
 
   if(searchInProgress == false){
 
-    console.log("search function called");
     searchInProgress = true;
 
     inActivePage();
@@ -61,7 +60,7 @@ $searchInput.keypress(function(event) {
     $playlistContainer.html('');
 
     playlistName = $searchInput.val().toUpperCase();
-    var withoutSpaces = playlistName.split(' ').join('')
+    withoutSpaces = playlistName.split(' ').join('')
 
     getSpotify(0, withoutSpaces);
     playlistData.name = playlistName;
@@ -70,66 +69,8 @@ $searchInput.keypress(function(event) {
 
 });
 
-var appendTrack = function(track, index) {
-
-  var name = track.name.substring(0, 20);
-  var artist = track.artist.substring(0, 15);
-
-  if (track.name.length > 20) {
-    name += '...';
-  }
-  if (track.artist.length > 15) {
-    artist += '...';
-  }
-
-  // Append songs with artist, track name, and url
-  var $player = $('<div class="track-wrapper"><span id="dynamic-search"><i data-song="' + track.preview_url + '" class="fa fa-play-circle-o fa-2x acrostic-play" aria-hidden="true"></i>' + name + '<span id="searchartist"> by ' + artist + '</span></span><p class="track-info">' + track.name + ' by ' + track.artist + '</p></div>');
-
-  if (playlistName[index + spaces] === ' ') {
-    $playlistContainer.append($('<div id="dynamic-search" class="invisible">invisible</div>'));
-
-     spaces += 1;
-  }
-
-  playlistData.tracks.push(track);
-
-  $playlistContainer.append($player);
-
-  $('.acrostic-play').click(function(event) {
-    event.preventDefault();
-
-    var $track = $(event.target)
-
-    if ($track.hasClass('playing')) {
-      player.pause()
-      $track.removeClass('playing');
-    }
-
-    else if ($('.acrostic-play').hasClass('playing')) {
-      player.pause()
-      $('.playing').removeClass('playing');
-
-      window.setTimeout(function() {
-        var filename = $track.data('song');
-        player.src = filename;
-        player.play();
-        $track.addClass('playing');
-      }, 200);
-    }
-    else {
-      var filename = $(event.target).data('song');
-      player.src = filename;
-      player.play();
-      $track.addClass('playing');
-    }
-
-    getSpotify(index + 1, playlist);
-
-  });
-}
-
 const getSpotify = function(index, playlist) {
-
+  console.log(index);
   if (index === playlist.length) {
 
     var $buttonContainer = $('#both_buttons');
@@ -172,18 +113,73 @@ const getSpotify = function(index, playlist) {
         console.log("search complete");
         return console.log('non 200 status');
       }
-
       appendTrack(track, index);
     });
 
     $xhr.fail(function(err) {
       searchInProgress = false;
-      getFallback(track);
+      getFallback(playlist[index], index);
     });
 
 };
 
-var getFallback = function(letter) {
+var appendTrack = function(track, index) {
+
+  var name = track.name.substring(0, 20);
+  var artist = track.artist.substring(0, 15);
+
+  if (track.name.length > 20) {
+    name += '...';
+  }
+  if (track.artist.length > 15) {
+    artist += '...';
+  }
+
+  // Append songs with artist, track name, and url
+  var $player = $('<div class="track-wrapper"><span id="dynamic-search"><i data-song="' + track.preview_url + '" class="fa fa-play-circle-o fa-2x acrostic-play" aria-hidden="true"></i>' + name + '<span id="searchartist"> by ' + artist + '</span></span><p class="track-info">' + track.name + ' by ' + track.artist + '</p></div>');
+
+  if (playlistName[index + spaces] === ' ') {
+    $playlistContainer.append($('<div id="dynamic-search" class="invisible">invisible</div>'));
+
+     spaces += 1;
+  }
+
+  playlistData.tracks.push(track);
+  $playlistContainer.append($player);
+
+  $('.acrostic-play').click(function(event) {
+    event.preventDefault();
+
+    var $track = $(event.target)
+
+    if ($track.hasClass('playing')) {
+      player.pause()
+      $track.removeClass('playing');
+    }
+
+    else if ($('.acrostic-play').hasClass('playing')) {
+      player.pause()
+      $('.playing').removeClass('playing');
+
+      window.setTimeout(function() {
+        var filename = $track.data('song');
+        player.src = filename;
+        player.play();
+        $track.addClass('playing');
+      }, 200);
+    }
+    else {
+      var filename = $(event.target).data('song');
+      player.src = filename;
+      player.play();
+      $track.addClass('playing');
+    }
+  });
+
+  getSpotify(index + 1, withoutSpaces);
+};
+
+var getFallback = function(letter, index) {
   var $xhr = $.ajax({
     method: 'GET',
     url: '/tracks',
@@ -195,7 +191,7 @@ var getFallback = function(letter) {
   });
 
   $xhr.done(function(track) {
-    appendTrack(track);
+    appendTrack(track, index);
   });
 
   $xhr.fail(function(err) {
@@ -205,6 +201,7 @@ var getFallback = function(letter) {
 
 var activateSave = function(callback) {
   $save.on('click', function(event) {
+    console.log(playlistData);
     var $xhr = $.ajax({
       method: 'POST',
       url: '/playlists',

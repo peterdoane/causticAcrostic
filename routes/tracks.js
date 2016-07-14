@@ -8,11 +8,12 @@ const validations = require('../validations/tracks');
 const knex = require('../knex');
 
 router.get('/tracks', (req, res, next) => {
-  knex('tracks')
+  knex.select('artist', 'name', 'preview_url')
+    .from('tracks')
     .where('tracks.name', 'like', req.query.letter + '%')
     .then((tracks) => {
       const track = tracks[Math.floor(Math.random() * tracks.length)];
-      res.send(tracks);
+      res.send(track);
     })
     .catch((err) => {
       next(err);

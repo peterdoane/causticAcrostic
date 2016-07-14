@@ -154,7 +154,6 @@ exports.seed = function(knex) {
      artist: 'Mayhem',
      preview_url: 'https://p.scdn.co/mp3-preview/9b47f1bcb7a40c40a79121f96be092beaa9e15e8'
     },
-
     {
      id: 26,
      name: 'Zos Kia Cultus',

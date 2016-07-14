@@ -4,7 +4,7 @@ const Joi = require('joi');
 
 module.exports.post = {
   body: {
-    title: Joi.string()
+    name: Joi.string()
       .required()
       .label('Playlist title')
       .trim()
