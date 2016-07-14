@@ -213,7 +213,6 @@ var inActivePage = function() {
 var activePage = function() {
   $('.search-input-field').removeClass('blurredElement');
   $('.search-input-field').prop('disabled', false);
-
 };
 
 
