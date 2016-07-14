@@ -14,7 +14,7 @@ var genres = {
 var playlistName;
 var genre = localStorage.getItem('genre');
 var spaces = 0;
-var player = new Audio();
+var player = document.createElement('audio')  //new Audio();
 
 var $save;
 
@@ -62,8 +62,18 @@ const getSpotify = function(index, playlist) {
         return console.log('non 200 status');
       }
 
+      var name = track.name.substring(0, 20);
+      var artist = track.artist.substring(0, 15);
+
+      if (track.name.length > 20) {
+        name += '...';
+      }
+      if (track.artist.length > 15) {
+        artist += '...';
+      }
+
       // Append songs with artist, track name, and url
-      var $player = $('<div><span id="dynamic-search"><i data-song="' + track.preview_url + '" class="fa fa-play-circle-o fa-2x acrostic-play" aria-hidden="true"></i>' + track.name + '<span id="searchartist"> by ' +  track.artist + '</span></span></div>');
+      var $player = $('<div class="track-wrapper"><span id="dynamic-search"><i data-song="' + track.preview_url + '" class="fa fa-play-circle-o fa-2x acrostic-play" aria-hidden="true"></i>' + name + '<span id="searchartist"> by ' + artist + '</span></span><p class="track-info">' + track.name + ' by ' + track.artist + '</p></div>');
 
       if (playlistName[index + spaces] === ' ') {
         $playlistContainer.append($('<div id="dynamic-search" class="invisible">invisible</div>'));
@@ -78,13 +88,32 @@ const getSpotify = function(index, playlist) {
       $('.acrostic-play').click(function(event) {
         event.preventDefault();
 
-        player.pause();
+        var $track = $(event.target)
 
-        var filename = $(event.target).data('song');
-        player.src = filename;
-        player.play();
+        if ($track.hasClass('playing')) {
+          player.pause()
+          $track.removeClass('playing');
+        }
 
-      })
+        else if ($('.acrostic-play').hasClass('playing')) {
+          player.pause()
+          $('.playing').removeClass('playing');
+
+          window.setTimeout(function() {
+            var filename = $track.data('song');
+            player.src = filename;
+            player.play();
+            $track.addClass('playing');
+          }, 200);
+        }
+        else {
+          var filename = $(event.target).data('song');
+          player.src = filename;
+          player.play();
+          $track.addClass('playing');
+        }
+
+      });
 
       getSpotify(index + 1, playlist);
     });

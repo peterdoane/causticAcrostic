@@ -18,8 +18,6 @@
 }
 
 
-
-
 #dynamic-search{
   font-size: 60px;
   max-length:15;
@@ -237,6 +235,16 @@ body {
   visibility: hidden;
 }
 
+.track-info {
+  display: none;
+}
+
+.track-wrapper:hover .track-info {
+  font-size: 15px;
+  color: #fff;
+  visibility: visible;
+  display: block;
+}
 
 
 .blurredElement {
