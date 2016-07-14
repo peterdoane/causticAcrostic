@@ -22,11 +22,17 @@ $('.popup-window').leanModal();
   var selectedGenre = 'All';
 
   $('.genre-selection').on('click', function(event) {
+
     selectedGenre = event.target.textContent;
     $('#word-cloud').empty();
     renderPlaylistNames(selectedGenre);
 
-    $('#causticLogo').text(selectedGenre);
+    if (selectedGenre === 'All') {
+      $('#causticLogo').text('Playlists');
+    }
+    else{
+      $('#causticLogo').text(selectedGenre);
+    }
   });
 
   var renderPlaylistNames = function(selectedGenre) {
@@ -100,6 +106,19 @@ $('.popup-window').leanModal();
       tracks.forEach(function(track) {
         $('#track-list').append($('<li><div><span id="dynamic-search"><i data-song="' + track.preview_url + '" class="fa fa-play-circle-o fa-2x acrostic-play" aria-hidden="true"></i>' + track.name + '<span id="searchartist"> by ' +  track.artist + '</span></span></div></li>'))
       });
+
+      var player = new Audio();
+      
+      $('.acrostic-play').click(function(event) {
+        event.preventDefault();
+
+        player.pause();
+
+        var filename = $(event.target).data('song');
+        player.src = filename;
+        player.play();
+
+      })
 
       $('#modal1').openModal();
     })
