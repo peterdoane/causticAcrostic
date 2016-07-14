@@ -129,13 +129,7 @@ body {
   text-transform: uppercase;
   padding-bottom: 1.5em;
 }
-#genre-selection{
-  font-size: 30px;
-  font: 20px/20px 'Megrim', Georgia,
-  serif;
-  color: #fff;
-  text-transform: uppercase;
-}
+
 #wordcloud{
   font-size: 70px;
   font: 50px/50px 'Megrim', Georgia,
@@ -214,6 +208,14 @@ body {
   margin-left: 80px;
   font-size: 70px;
   font: 50px/50px 'Megrim', Georgia,
+  serif;
+  color: #fff;
+  text-transform: uppercase;
+}
+
+.genre-selection{
+  font-size: 40px;
+  font: 30px/30px 'Megrim', Georgia,
   serif;
   color: #fff;
   text-transform: uppercase;

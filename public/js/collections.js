@@ -33,23 +33,16 @@ $('.popup-window').leanModal();
 
       $xhr.done(function(playlists) {
 
-
         playlists.forEach(function(playlist) {
           var $playlist = $('<li><a id="playlist-words"class="white-text modal-trigger" href="#modal1">' + playlist.playlist_name + '</a></li>')
 
           $playlist.on('click', function() {
             getTracks(playlist.playlist_id);
-
           })
 
           $('#word-cloud').append($playlist)
 
-
-
-          // Container.append(playlist data)
         })
-        // Add event listener to each playlist to trigger renderTracks
-
       });
 
       $xhr.fail(function(err) {
@@ -66,14 +59,16 @@ $('.popup-window').leanModal();
       });
 
       $xhr.done(function(playlists) {
-        //Render playlist names
-
         playlists.forEach(function(playlist) {
-           // Container.append(playlist data)
-           //
-        })
+          var $playlist = $('<li><a id="playlist-words"class="white-text modal-trigger" href="#modal1">' + playlist.playlist_name + '</a></li>')
 
-        // Add event listener to each playlist to trigger renderTracks
+          $playlist.on('click', function() {
+            getTracks(playlist.playlist_id);
+          })
+
+          $('#word-cloud').append($playlist)
+
+        })
       });
 
       $xhr.fail(function(error) {
