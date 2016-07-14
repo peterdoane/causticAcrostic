@@ -9,20 +9,10 @@ const knex = require('../knex');
 
 router.get('/tracks', (req, res, next) => {
   knex('tracks')
-    .orderBy('name', 'asc')
+    .where('tracks.name', 'like', req.query.letter + '%')
     .then((tracks) => {
+      const track = tracks[Math.floor(Math.random() * tracks.length)];
       res.send(tracks);
-    })
-    .catch((err) => {
-      next(err);
-    });
-});
-
-router.post('/tracks', ev(validations.post), (req, res, next) => {
-  knex('tracks')
-    .insert(req.body, '*')
-    .then((tracks) => {
-      res.send(tracks[0]);
     })
     .catch((err) => {
       next(err);

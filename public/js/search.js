@@ -136,6 +136,25 @@ const getSpotify = function(index, playlist) {
 
 };
 
+var getFallback = function(letter) {
+  var $xhr = $.ajax({
+    method: 'GET',
+    url: '/tracks',
+    dataType: 'json',
+    contentType: 'application/json',
+    data: {
+      letter: letter
+    }
+  });
+
+  $xhr.done(function(track) {
+    appendTrack(track);
+  });
+
+  $xhr.fail(function(err) {
+    console.log('Uh oh');
+  })
+};
 
 $searchInput.keypress(function(event) {
 
