@@ -136,7 +136,11 @@ var appendTrack = function(track, index) {
   }
 
   // Append songs with artist, track name, and url
-  var $player = $('<div class="track-wrapper"><span id="dynamic-search"><i data-song="' + track.preview_url + '" class="fa fa-play-circle-o fa-2x acrostic-play" aria-hidden="true"></i>' + name + '<span id="searchartist"> by ' + artist + '</span></span><p class="track-info">' + track.name + ' by ' + track.artist + '</p></div>');
+  var $player = $('<div class="track-wrapper"><span id="dynamic-search"><i data-song="' + track.preview_url + '" class="fa fa-play-circle-o fa-2x acrostic-play" aria-hidden="true"></i>' + name + '<span id="searchartist"> by ' + artist + '</span></span></div>');
+
+  if (name.includes('...') || artist.includes('...')) {
+    $player.append($('<p class="track-info">' + track.name + ' by ' + track.artist + '</p>'))
+  }
 
   if (playlistName[index + spaces] === ' ') {
     $playlistContainer.append($('<div id="dynamic-search" class="invisible">invisible</div>'));
