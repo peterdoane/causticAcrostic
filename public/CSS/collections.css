@@ -210,7 +210,9 @@ img.logo-img {
       display: block;
       text-align: left;
     }
-
+    *{
+      border:solid green;
+    }
     #playlist-container .modal {
       height: 500px;
     }
@@ -225,6 +227,7 @@ img.logo-img {
       margin: 0 5px 0 10px;
       font-size:20px;
     }
+    
 
     body {
       background-image: url(../images/background.jpg);
