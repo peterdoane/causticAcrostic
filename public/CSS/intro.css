@@ -38,8 +38,9 @@
     font-size: 70px;
     font: 50px/50px 'Megrim', Georgia,
     serif;
-    color: #fff;
+    color: #a7a7a7;
     text-transform: uppercase;
+    font-weight: bolder;
   }
     a.song {
       margin: 5px;
