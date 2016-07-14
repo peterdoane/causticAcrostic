@@ -6,7 +6,7 @@ exports.seed = function(knex) {
       return knex('genres').insert([
       {
         id: 1,
-        name: 'Death Metal'
+        name: 'Anarcho Punk'
       },
       {
         id: 2,

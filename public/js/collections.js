@@ -4,7 +4,7 @@ $('.popup-window').leanModal();
 
 
   var genres = {
-    "Death Metal": 1,
+    "Anarcho Punk": 1,
     "Black Metal": 2,
     "Grindcore": 3,
     "Doom Metal": 4,
@@ -108,7 +108,7 @@ $('.popup-window').leanModal();
       });
 
       var player = new Audio();
-      
+
       $('.acrostic-play').click(function(event) {
         event.preventDefault();
 

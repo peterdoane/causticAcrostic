@@ -2,7 +2,7 @@
 'use strict';
 
 var genres = {
-  "Death Metal": 1,
+  "Anarcho Punk": 1,
   "Black Metal": 2,
   "Grindcore": 3,
   "Doom Metal": 4,
@@ -118,7 +118,7 @@ $searchInput.keypress(function(event) {
 
     playlistName = $searchInput.val().toUpperCase();
     var withoutSpaces = playlistName.split(' ').join('')
-    
+
     getSpotify(0, withoutSpaces);
     playlistData.name = playlistName;
     playlistData.genre_id = genres[genre];
