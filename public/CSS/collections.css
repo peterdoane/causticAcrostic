@@ -163,6 +163,14 @@ body {
   margin-right: 1em;
 }
 
+#header {
+position:fixed;
+top: 0px;
+left:0px;
+width:1000px; – the width of your image
+height: 100px; – the height of your image
+z-index:999999;
+}
 
 .modalText{
   font-size: 18px;
@@ -170,6 +178,10 @@ body {
   serif;
   color: #fff;
   text-transform: uppercase;
+}
+
+img.logo-img {
+    position: fixed;
 }
 
 .firstLetter{
