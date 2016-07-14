@@ -8,8 +8,28 @@
   serif;
 
 }
+#both_buttons{
+text-align: center;
 
+}
+#newSearch {
+      border-radius: 99px !important;
+}
 
+#save-button{
+  border-radius: 99px !important;
+
+}
+
+#collection-button{
+  border-radius: 99px !important;
+}
+
+#search-button{
+  margin-right: 15px !important;
+  border-radius: 99px !important;
+
+}
 /**{
   border:solid green;
 }*/
