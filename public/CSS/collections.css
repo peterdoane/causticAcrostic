@@ -224,14 +224,14 @@ body {
 #playlist-words:hover{
   color: grey !important;
 }
-#playlist-words{
-  margin-left: 80px;
-  font-size: 70px;
-  font: 50px/50px 'Megrim', Georgia,
-  serif;
-  color: #fff;
-  text-transform: uppercase;
 
+#playlist-words {
+   margin-left: 430px;
+   font-size: 70px;
+   font: 45px/45px 'Megrim', Georgia, serif;
+   color: #fff;
+   text-transform: uppercase;
+   font-weight: bolder;
 }
 
 .genre-selection{

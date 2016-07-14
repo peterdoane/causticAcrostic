@@ -237,6 +237,7 @@ var activePage = function() {
 
 
 $(document).on('click', "#newSearch", function () {
+  $('#playlist-container').empty();
   activePage();
 });
 })();
