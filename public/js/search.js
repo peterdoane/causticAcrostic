@@ -237,7 +237,10 @@ var activePage = function() {
 
 
 $(document).on('click', "#newSearch", function () {
+  $('.search-input-field').val('');
   $('#playlist-container').empty();
+  $('#collection-button').remove();
+  $('#newSearch').remove();
   activePage();
 });
 })();

@@ -22,6 +22,10 @@
 ul#nav-mobile > li:hover > a {
     background: rgba(86, 86, 86, 0.71);
 }
+.white-text {
+    color: #d27777 !important;
+}
+
 
 img.logo-img {
     position: absolute;
@@ -115,7 +119,6 @@ body {
   font-size: 30px;
   font: 20px/20px 'Megrim', Georgia,
   serif;
-  color: blue;
   text-transform: uppercase;
 }
 
@@ -148,6 +151,7 @@ body {
     serif;
     color: #fff;
     text-transform: uppercase;
+     font-weight: bolder;
   }
   #search{
     font-size: 60px;
@@ -243,7 +247,6 @@ img.logo-img {
    font: 45px/45px 'Megrim', Georgia, serif;
    color: #fff;
    text-transform: uppercase;
-   font-weight: bolder;
 }
 
 .genre-selection{
