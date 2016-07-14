@@ -34,7 +34,7 @@ const getSpotify = function(index, playlist) {
     event.preventDefault();
 
     var collectionButton = '<a id="collection-button" class="waves-effect grey waves-light btn" href="collections.html">View Collection</a>';
-    var saveButton = '<a id="save-button" class="waves-effect grey waves-light btn">Save Playlist</a>';
+    var saveButton = '<a id="save-button" class="center-align waves-effect grey waves-light btn">Save Playlist</a>';
     var makeNewButton = '<a id="newSearch" class="waves-effect grey waves-light btn">Make New</a>';
 
     if ($('#collection-button').length == 0){
@@ -65,7 +65,6 @@ const getSpotify = function(index, playlist) {
     });
 
     $xhr.done(function(track) {
-
 
       if ($xhr.status !== 200) {
         searchInProgress = false;
@@ -199,7 +198,7 @@ var activateSave = function(callback) {
 
     $xhr.fail(function(error) {
       console.log(error);
-      // 
+      //
     })
   });
 };
