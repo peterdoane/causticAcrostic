@@ -13,9 +13,7 @@ $('.popup-window').leanModal();
     "Riot Grrrl": 7
   };
 
-  var $modal = $('<div id="modal1" class="modal"><div class="modal-content"><ul id="track-list" class="fixed"></ul></div></div>');
-
-  $('#word-cloud').append($modal);
+  var $modal = $('#modal1');
 
   var genre = localStorage.getItem('genre');
 
@@ -85,8 +83,8 @@ $('.popup-window').leanModal();
         })
       });
 
-      $xhr.fail(function(error) {
-        console.log('xhr get playlists/playlistId error');
+      $xhr.fail(function(err) {
+        console.log(err.message);
       });
     }
   };
