@@ -3,14 +3,11 @@
 const express = require('express');
 const router = express.Router();
 
-const ev = require('express-validation');
-const validations = require('../validations/playlists');
 const knex = require('../knex');
 
 router.get('/playlists', (req, res, next) => {
-  const genreId = Number.parseInt(req.params.genre_id);
 
-  knex.select( 'playlists.id as playlist_id', 'playlists.title as playlist_name')
+  knex.select( 'playlists.id as playlist_id','playlists.title as playlist_name')
     .from('playlists')
     .orderBy('playlist_id')
     .then((playlists) => {
@@ -24,7 +21,7 @@ router.get('/playlists', (req, res, next) => {
 router.get('/playlists/:genre_id', (req, res, next) => {
   const genreId = Number.parseInt(req.params.genre_id);
 
-  knex.select( 'playlists.id as playlist_id', 'playlists.title as playlist_name')
+  knex.select('playlists.id as playlist_id', 'playlists.title as playlist_name')
     .from('playlists')
     .where('playlists.genre_id', genreId)
     .orderBy('playlist_id')
@@ -73,24 +70,23 @@ router.post('/playlists', (req, res, next) => {
         .insert({ genre_id: genre_id, title: name }, '*')
         .then((playlists) => {
           return playlists[0].id;
-        })
+        });
     })
     .then((playlist_id) => {
-
       return knex('tracks')
         .insert(tracks, '*')
         .then((insertedTracks) => {
           return insertedTracks.map((track) => {
-            return {track_id: track.id, playlist_id: playlist_id};
+            return { track_id: track.id, playlist_id: playlist_id };
           });
-        })
+        });
     })
     .then((playlists_tracks) => {
       knex('playlists_tracks')
         .insert(playlists_tracks, '*')
         .then((playlists_tracks) => {
           res.send(playlists_tracks[0]);
-        })
+        });
     })
     .catch((err) => {
       next(err);
