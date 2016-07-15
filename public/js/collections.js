@@ -2,7 +2,6 @@
 'use strict';
 $('.popup-window').leanModal();
 
-
   var genres = {
     "Anarcho Punk": 1,
     "Black Metal": 2,
@@ -44,12 +43,11 @@ $('.popup-window').leanModal();
       });
 
       $xhr.done(function(playlists) {
-
         playlists.forEach(function(playlist) {
           var $playlist = $('<li><a id="playlist-words" class="white-text modal-trigger" href="#modal1">' + playlist.playlist_name + '</a></li>')
 
           $playlist.on('click', function() {
-            getTracks(playlist.playlist_id);
+            getTracks(playlist);
           })
 
           $('#word-cloud').append($playlist)
@@ -75,7 +73,7 @@ $('.popup-window').leanModal();
           var $playlist = $('<li><a id="playlist-words"class="white-text modal-trigger" href="#modal1">' + playlist.playlist_name + '</a></li>')
 
           $playlist.on('click', function() {
-            getTracks(playlist.playlist_id);
+            getTracks(playlist);
           })
 
           $('#word-cloud').append($playlist)
@@ -89,7 +87,8 @@ $('.popup-window').leanModal();
     }
   };
 
-  var getTracks = function(playlistId) {
+  var getTracks = function(playlist) {
+    var playlistId = playlist.playlist_id;
     var $xhr = $.ajax({
       method: 'GET',
       url: 'playlists/' + playlistId + '/tracks',
@@ -99,27 +98,41 @@ $('.popup-window').leanModal();
 
     $xhr.done(function(tracks) {
 
+      var i = 0;
+      var output = '';
+      var playlistName = playlist.playlist_name;
+      // this will work now because we have passed into the current scope
+      console.log('playlist name when we want to split it:' + playlist.playlist_name);
+      var playlistWords = playlistName.split(' ');
+
       $('#track-list').empty();
 
-      var htmlArr = tracks.map(function(track) {
-        var trackNm = track.name.split('');
-        var firstLtr = trackNm[0];
-        trackNm.shift();
-        var nme = trackNm.join('');
-        return '<li>' +
-        '<p id="dynamic-search">' +
-        '<i data-song="' + track.preview_url + '" class="fa fa-play-circle-o fa-3x acrostic-play" aria-hidden="true"></i>' +
-        '<span class="modalText">' + '<span class="firstLetter">'+ firstLtr + '</span>' +
-        nme +
-        '<span id="searchartist"> by ' + track.artist + '</span>' +
-        '</span>' +
-        '</p>' +
-        '</li>';
+      playlistWords.forEach(function(value) {
+
+
+        output += '<div class="playlist-word">';
+        output += '<ul class="track-list">';
+        tracks.forEach(function (track) {
+          var trackNm = track.name;
+          var firstLtr = trackNm.substr(0,1);
+          var remainder = trackNm.substr(1);
+          output += '<p id="dynamic-search">';
+          output += '<span class="modalText">'
+          firstLtr = '<span class="firstLetter">' + firstLtr + '</span>';
+          output += firstLtr;
+          output += remainder;
+          output += '<span id="searchartist"> by ';
+          output += tracks.artist;
+          output += '</span>';
+          output += '</span>';
+          output += '</p>';
+          output += '</li>';
+        });
+        output += '</ul>';
+
       });
 
-      var html = htmlArr.join('');
-
-      $('#track-list').html(html);
+      $('#track-list').html(output);
 
       var player = new Audio();
 
