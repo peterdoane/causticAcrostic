@@ -1,73 +1,73 @@
 (function() {
-'use strict';
+  'use strict';
 
-var genres = {
-  "Anarcho Punk": 1,
-  "Black Metal": 2,
-  "Grindcore": 3,
-  "Doom Metal": 4,
-  "Thrash Metal": 5,
-  "Hardcore Punk": 6,
-  "Riot Grrrl": 7
-};
+  var genres = {
+    "Anarcho Punk": 1,
+    "Black Metal": 2,
+    "Grindcore": 3,
+    "Doom Metal": 4,
+    "Thrash Metal": 5,
+    "Hardcore Punk": 6,
+    "Riot Grrrl": 7
+  };
 
-var playlistName;
-var genre = localStorage.getItem('genre');
-var spaces = 0;
-var player = document.createElement('audio')  //new Audio();
+  var playlistName;
+  var genre = localStorage.getItem('genre');
+  var spaces = 0;
+  var player = document.createElement('audio');
 
-var $save;
-var withoutSpaces;
+  var $save;
+  var withoutSpaces;
 
-var $searchInput = $('.search-input-field');
+  var $searchInput = $('.search-input-field');
 
-var $playlistContainer = $('#playlist-container');
+  var $playlistContainer = $('#playlist-container');
 
-var playlistData = {tracks: []};
+  var playlistData = { tracks: [] };
 
-var searchInProgress  = false;
+  var searchInProgress = false;
 
-$searchInput.keypress(function(event) {
+  $searchInput.keypress(function(event) {
 
-  var range = function(number){
-  	if(number == 13 || number == 32 || number > 64 && number < 90 || number > 96 && number < 123){
-  		return false;
-  	} else{
-  	return true;
-  	}
-  }
+    var range = function(number) {
 
-  var key = event.which;
-  if(range(key)){
-    Materialize.toast('Letters Only Knucklehead!', 2750)
-    return;
-  }
+  	  if (number === 13 || number === 32 || number > 64 && number < 90 || number > 96 && number < 123) {
+  		  return false;
+  	  }
+      else {
+  	    return true;
+  	  }
+    };
 
-  if (key !== 13) {
-    return;
-  }
+    var key = event.which;
 
-  event.preventDefault();
+    if (range(key)) {
+      Materialize.toast('Letters Only Knucklehead!', 2750)
+      return;
+    }
 
-    // Need to validate string
+    if (key !== 13) {
+      return;
+    }
 
-  if(searchInProgress == false){
+    event.preventDefault();
 
-    searchInProgress = true;
+    if(searchInProgress == false) {
 
-    inActivePage();
+      searchInProgress = true;
 
-    $playlistContainer.html('');
+      inActivePage();
 
-    playlistName = $searchInput.val().toUpperCase();
-    withoutSpaces = playlistName.split(' ').join('')
+      $playlistContainer.html('');
 
-    getSpotify(0, withoutSpaces);
-    playlistData.name = playlistName;
-    playlistData.genre_id = genres[genre];
-  }
+      playlistName = $searchInput.val().toUpperCase();
+      withoutSpaces = playlistName.split(' ').join('')
 
-});
+      getSpotify(0, withoutSpaces);
+      playlistData.name = playlistName;
+      playlistData.genre_id = genres[genre];
+    }
+  });
 
 const getSpotify = function(index, playlist) {
   console.log(index);
