@@ -26,6 +26,9 @@ ul#nav-mobile > li:hover > a {
     color: #d27777 !important;
 }
 
+.playlist-word {
+  margin-bottom: 3em;
+}
 
 img.logo-img {
     position: absolute;

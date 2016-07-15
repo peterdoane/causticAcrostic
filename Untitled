@@ -1,0 +1,23 @@
+playlist ->
+  create output placeholder variable
+  split playlist name into array
+  loop array
+
+    create ul div
+    add div to placeholder .push()
+
+      each track split first letter
+      firstLtr----> .substr(0,1); // must faster than splitting an array
+            substr returns the x,y of a string (in this case string[0])
+      remaining----> .substr(1);
+            returns everything from string[1] to end
+          these are contained within track div
+      style first letter
+      style remaining
+      join these two
+      add result to placeholder
+
+    close the ul & by adding to placeholder
+
+  close tracklist div
+  return the placeholder into the dom, done!

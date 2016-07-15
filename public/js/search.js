@@ -39,7 +39,9 @@ $searchInput.keypress(function(event) {
 
   var key = event.which;
   if(range(key)){
-    Materialize.toast('Letters Only Knucklehead!', 2750)
+    Materialize.toast('Letters Only Knucklehead!', 2750);
+    var audio = new Audio('images/dethbleep.mp3');
+    audio.play();
     return;
   }
 

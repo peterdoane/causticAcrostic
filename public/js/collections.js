@@ -104,31 +104,42 @@ $('.popup-window').leanModal();
       // this will work now because we have passed into the current scope
       console.log('playlist name when we want to split it:' + playlist.playlist_name);
       var playlistWords = playlistName.split(' ');
+      var trackArray = [];
+      playlistWords.forEach(function (word) {
+        var trackSubArray = [];
+        for (let letter in word) {
+          trackSubArray.push(tracks[i]);
+          i++;
+        }
+        trackArray.push(trackSubArray);
+      });
+      i = 0;
 
       $('#track-list').empty();
 
-      playlistWords.forEach(function(value) {
-
+      trackArray.forEach(function(value) {
 
         output += '<div class="playlist-word">';
         output += '<ul class="track-list">';
-        tracks.forEach(function (track) {
+        value.forEach(function (track) {
           var trackNm = track.name;
           var firstLtr = trackNm.substr(0,1);
           var remainder = trackNm.substr(1);
           output += '<p id="dynamic-search">';
+          output += '<i data-song="' + track.preview_url + '" class="fa fa-play-circle-o fa-3x acrostic-play" aria-hidden="true"></i>';
           output += '<span class="modalText">'
           firstLtr = '<span class="firstLetter">' + firstLtr + '</span>';
           output += firstLtr;
           output += remainder;
           output += '<span id="searchartist"> by ';
-          output += tracks.artist;
+          output += track.artist;
           output += '</span>';
           output += '</span>';
           output += '</p>';
           output += '</li>';
         });
         output += '</ul>';
+        output += '</div>';
 
       });
 
