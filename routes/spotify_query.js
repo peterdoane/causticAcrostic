@@ -24,15 +24,14 @@ const refineSearch = function(response, letter) {
   });
 
   return filtered;
-}
+};
 
 router.get('/spotify', ev(validations.get), (req, res, next) => {
   const { letter, genre } = req.query;
 
-    request({uri: `https://api.spotify.com/v1/search?q=${letter}*%20genre:%22${genre}%22&type=track&limit=50`,
-    json: true})
+    request({ uri: `https://api.spotify.com/v1/search?q=${letter}*%20genre:%22${genre}%22&type=track&limit=50`,
+    json: true })
       .then((response) => {
-
         const refined = refineSearch(response, letter);
 
         const track = refined[Math.floor(Math.random() * refined.length)];
@@ -42,14 +41,14 @@ router.get('/spotify', ev(validations.get), (req, res, next) => {
         }
 
         const err = new Error('No tracks with this genre and letter.');
+
         err.status = 400;
 
         throw err;
       })
       .catch((err) => {
         next(err);
-      })
-
+      });
 });
 
 module.exports = router;
