@@ -1,5 +1,4 @@
 'use strict';
-
 exports.up = function(knex) {
   return knex.schema.createTable('playlists', (table) => {
     table.increments();

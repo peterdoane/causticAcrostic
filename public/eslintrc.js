@@ -1,6 +1,7 @@
 module.exports = {
  extends: [
-   'ryansobol/es6'
+   'ryansobol/es',
+   'ryansobol/browser'
  ],
  rules: {
    'camelcase': 'off'

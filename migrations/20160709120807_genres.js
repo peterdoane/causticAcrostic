@@ -6,7 +6,6 @@ exports.up = function(knex) {
       .notNullable()
       .defaultTo('');
   });
-
 };
 
 exports.down = function(knex) {

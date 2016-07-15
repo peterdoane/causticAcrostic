@@ -15,5 +15,5 @@ exports.seed = function(knex) {
       return knex.raw(
         "SELECT setval('playlists_id_seq', (SELECT MAX(id) FROM playlists));"
     );
-  });
+    });
 };

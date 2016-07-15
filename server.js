@@ -32,11 +32,10 @@ app.use((_req, res) => {
 
 // eslint-disable-next-line max-params
 app.use((err, _req, res, _next) => {
-  // eslint-disable-next-line no-console
   if (err.status) {
     return res.status(err.status).send(err.message);
   }
-
+  // eslint-disable-next-line no-console
   console.error(err);
   res.sendStatus(500);
 });
