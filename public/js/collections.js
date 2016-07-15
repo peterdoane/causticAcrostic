@@ -1,6 +1,6 @@
 (function() {
-'use strict';
-$('.popup-window').leanModal();
+  'use strict';
+  $('.popup-window').leanModal();
 
   var genres = {
     "Anarcho Punk": 1,
@@ -107,7 +107,7 @@ $('.popup-window').leanModal();
       var trackArray = [];
       playlistWords.forEach(function (word) {
         var trackSubArray = [];
-        for (let letter in word) {
+        for (var letter in word) {
           trackSubArray.push(tracks[i]);
           i++;
         }
