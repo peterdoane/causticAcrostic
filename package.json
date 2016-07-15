@@ -6,7 +6,9 @@
   "scripts": {
     "knex": "knex",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "nodemon": "nodemon server.js"
+    "nodemon": "nodemon server.js",
+    "heroku-postbuild": "knex migrate:latest",
+    "nf": "nf start"
   },
   "keywords": [
     "spotify",
@@ -26,11 +28,12 @@
     "request-promise": "^3.0.0"
   },
   "engines": {
-    "node": "6.2.2"
+    "node": "6.3.0"
   },
   "devDependencies": {
     "eslint": "^3.0.1",
     "eslint-config-ryansobol": "^7.4.0",
+    "foreman": "^1.4.1",
     "nodemon": "^1.9.2"
   }
 }
