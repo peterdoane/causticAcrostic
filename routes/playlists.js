@@ -7,7 +7,7 @@ const knex = require('../knex');
 
 router.get('/playlists', (req, res, next) => {
 
-  knex.select( 'playlists.id as playlist_id','playlists.title as playlist_name')
+  knex.select('playlists.id as playlist_id','playlists.title as playlist_name')
     .from('playlists')
     .orderBy('playlist_id')
     .then((playlists) => {

@@ -1,12 +1,12 @@
 'use strict';
 
 module.exports = {
- development: {
+  development: {
    client: 'pg',
    connection: 'postgres://localhost/caustic_dev'
  },
 
- production: {
+  production: {
    client: 'pg',
    connection: process.env.DATABASE_URL
  }

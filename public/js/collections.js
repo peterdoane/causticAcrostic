@@ -43,7 +43,8 @@
 
       $xhr.done(function(playlists) {
         playlists.forEach(function(playlist) {
-          var $playlist = $('<li><a id="playlist-words" class="white-text modal-trigger" href="#modal1">'
+          var $playlist =
+          $('<li><a id="playlist-words" class="white-text modal-trigger" href="#modal1">'
           + playlist.playlist_name + '</a></li>');
 
           $playlist.on('click', function() {
