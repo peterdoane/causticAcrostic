@@ -3,13 +3,13 @@
   $('.popup-window').leanModal();
 
   var genres = {
-    "Anarcho Punk": 1,
-    "Black Metal": 2,
-    "Grindcore": 3,
-    "Doom Metal": 4,
-    "Thrash Metal": 5,
-    "Hardcore Punk": 6,
-    "Riot Grrrl": 7
+    'Anarcho Punk': 1,
+    'Black Metal': 2,
+    'Grindcore': 3,
+    'Doom Metal': 4,
+    'Thrash Metal': 5,
+    'Hardcore Punk': 6,
+    'Riot Grrrl': 7
   };
 
   var $modal = $('#modal1');
@@ -19,7 +19,6 @@
   var selectedGenre = 'All';
 
   $('.genre-selection').on('click', function(event) {
-
     selectedGenre = event.target.textContent;
     $('#word-cloud').empty();
     renderPlaylistNames(selectedGenre);
@@ -27,7 +26,7 @@
     if (selectedGenre === 'All') {
       $('#causticLogo').text('Playlists');
     }
-    else{
+    else {
       $('#causticLogo').text(selectedGenre);
     }
   });
@@ -44,18 +43,18 @@
 
       $xhr.done(function(playlists) {
         playlists.forEach(function(playlist) {
-          var $playlist = $('<li><a id="playlist-words" class="white-text modal-trigger" href="#modal1">' + playlist.playlist_name + '</a></li>')
+          var $playlist = $('<li><a id="playlist-words" class="white-text modal-trigger" href="#modal1">'
+          + playlist.playlist_name + '</a></li>');
 
           $playlist.on('click', function() {
             getTracks(playlist);
-          })
+          });
 
-          $('#word-cloud').append($playlist)
-
-        })
+          $('#word-cloud').append($playlist);
+        });
       });
 
-      $xhr.fail(function(err) {
+      $xhr.fail(function() {
         console.log('get playlists xhr error');
       });
     }
@@ -70,15 +69,16 @@
 
       $xhr.done(function(playlists) {
         playlists.forEach(function(playlist) {
-          var $playlist = $('<li><a id="playlist-words"class="white-text modal-trigger" href="#modal1">' + playlist.playlist_name + '</a></li>')
+          var $playlist = $('<li><a id="playlist-words"class="white-text modal-trigger" href="#modal1">'
+          + playlist.playlist_name + '</a></li>');
 
           $playlist.on('click', function() {
             getTracks(playlist);
-          })
+          });
 
-          $('#word-cloud').append($playlist)
+          $('#word-cloud').append($playlist);
 
-        })
+        });
       });
 
       $xhr.fail(function(err) {
@@ -89,6 +89,7 @@
 
   var getTracks = function(playlist) {
     var playlistId = playlist.playlist_id;
+
     var $xhr = $.ajax({
       method: 'GET',
       url: 'playlists/' + playlistId + '/tracks',
@@ -97,19 +98,19 @@
     });
 
     $xhr.done(function(tracks) {
-
       var i = 0;
       var output = '';
       var playlistName = playlist.playlist_name;
-      // this will work now because we have passed into the current scope
-      console.log('playlist name when we want to split it:' + playlist.playlist_name);
+
       var playlistWords = playlistName.split(' ');
       var trackArray = [];
-      playlistWords.forEach(function (word) {
+
+      playlistWords.forEach(function(word) {
         var trackSubArray = [];
+
         for (var letter in word) {
           trackSubArray.push(tracks[i]);
-          i++;
+          i += 1;
         }
         trackArray.push(trackSubArray);
       });
@@ -118,16 +119,17 @@
       $('#track-list').empty();
 
       trackArray.forEach(function(value) {
-
         output += '<div class="playlist-word">';
         output += '<ul class="track-list">';
-        value.forEach(function (track) {
+        value.forEach(function(track) {
           var trackNm = track.name;
-          var firstLtr = trackNm.substr(0,1);
+          var firstLtr = trackNm.substr(0, 1);
           var remainder = trackNm.substr(1);
+
           output += '<p id="dynamic-search">';
-          output += '<i data-song="' + track.preview_url + '" class="fa fa-play-circle-o fa-3x acrostic-play" aria-hidden="true"></i>';
-          output += '<span class="modalText">'
+          output += '<i data-song="' + track.preview_url +
+          '" class="fa fa-play-circle-o fa-3x acrostic-play" aria-hidden="true"></i>';
+          output += '<span class="modalText">';
           firstLtr = '<span class="firstLetter">' + firstLtr + '</span>';
           output += firstLtr;
           output += remainder;
@@ -140,7 +142,6 @@
         });
         output += '</ul>';
         output += '</div>';
-
       });
 
       $('#track-list').html(output);
@@ -154,13 +155,11 @@
 
         var filename = $(event.target).data('song');
         player.src = filename;
+
         player.play();
-
-      })
-
+      });
       $('#modal1').openModal();
-    })
-  }
-  renderPlaylistNames(selectedGenre)
-
+    });
+  };
+  renderPlaylistNames(selectedGenre);
 })();
