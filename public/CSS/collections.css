@@ -1,6 +1,5 @@
 #search{
   font-size: 60px;
-  max-length:15;
   margin-bottom: 10px;
   border-top: 1px solid #111;
   border-bottom: 1px solid white;
@@ -156,10 +155,6 @@ body {
     text-transform: uppercase;
      font-weight: bolder;
   }
-  #search{
-    font-size: 60px;
-    max-length:15;
-  }
 
   #track_name {
     font-size: 15px;
@@ -174,8 +169,8 @@ body {
 position:fixed;
 top: 0px;
 left:0px;
-width:1000px; – the width of your image
-height: 100px; – the height of your image
+width:1000px;
+height: 100px;
 z-index:999999;
 }
 
@@ -207,15 +202,13 @@ img.logo-img {
     color: #fff;
     text-transform: uppercase;
   }
-    a.song {``
+    a.song {
       margin: 5px;
       text-decoration: none;
       display: block;
       text-align: left;
     }
-    /**{
-      border:solid green;
-    }*/
+
     #playlist-container .modal {
       height: 500px;
     }
@@ -240,7 +233,7 @@ img.logo-img {
 
 
     #playlist-container{
-      width:400;
+      width:400px;
     }
 
 #playlist-words:hover{

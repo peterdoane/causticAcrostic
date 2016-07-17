@@ -1,7 +1,8 @@
 module.exports = {
  extends: [
-   'ryansobol/es',
-   'ryansobol/browser'
+   'ryansobol/browser',
+   'ryansobol/es5',
+   'ryansobol/jQuery'
  ],
  rules: {
    'camelcase': 'off'
