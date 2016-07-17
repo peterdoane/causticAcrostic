@@ -96,16 +96,28 @@ input{
   border-bottom: none;
   border-radius: 4px;
   outline: none;
+  background-color: rgba(255, 255, 255, 0.5);
+  box-shadow: none;
   box-sizing: content-box;
   font-family: 'Megrim', Georgia;
   font: 50px/1 'Megrim', Georgia, serif;
   color: white;
+  transition: all 0.3s;
 }
 
 .character-counter{
   color:white;
 }
 
+.flex-container {
+    display:flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    vertical-align:middle;
+}
 .input_text{
     border-bottom: 1px white;
 }
@@ -187,7 +199,7 @@ body {
   }
   #search{
     font-size: 60px;
-  }
+    }
 
   #track_name {
     font-size: 15px;
