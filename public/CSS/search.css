@@ -1,6 +1,5 @@
 #searchartist{
   font-size: 25px;
-  max-length:15;
   margin-bottom: 10px;
   border-top: 1px solid #111;
   color:white;
@@ -45,7 +44,6 @@ text-align: center;
 
 #dynamic-search{
   font-size: 60px;
-  max-length:15;
   margin-bottom: 10px;
   border-top: 1px solid #111;
   color:white;
@@ -69,7 +67,6 @@ input{
 
 #search{
   font-size: 60px;
-  max-length:15;
   margin-bottom: 10px;
   border-top: 1px solid #111;
   border-bottom: 1px solid white;
@@ -99,28 +96,16 @@ input{
   border-bottom: none;
   border-radius: 4px;
   outline: none;
-  background-color: rgba(255, 255, 255, 0.5);
-  box-shadow: none;
   box-sizing: content-box;
   font-family: 'Megrim', Georgia;
   font: 50px/1 'Megrim', Georgia, serif;
   color: white;
-  transition: all 0.3s;
 }
 
 .character-counter{
   color:white;
 }
 
-.flex-container {
-    display:flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-content: center;
-    align-items: center;
-    vertical-align:middle;
-}
 .input_text{
     border-bottom: 1px white;
 }
@@ -202,7 +187,6 @@ body {
   }
   #search{
     font-size: 60px;
-    max-length:15;
   }
 
   #track_name {
@@ -254,7 +238,6 @@ body {
 
 #dynamic-search.invisible {
   font-size: 40px;
-  max-length:15;
   margin-bottom: 5px;
   font: 40px/40px 'Megrim', Georgia,
   serif;
